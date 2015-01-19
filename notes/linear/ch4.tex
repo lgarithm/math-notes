@@ -1,0 +1,111 @@
+
+\section{Multilinear Algebra}
+\subsection{Linear Space}
+A linear space $V$ over $K$, is an abelian group, together with a field $K$,
+and a function $K \times V \to V$, such that
+$$k(\ve v_1 + \ve v_2) = k\ve v_2 + k\ve v_2$$
+$$(k_1 + k_2)\ve v = k_1\ve v + k_2\ve v$$
+$$(k_1k_2)\ve v = k_1(k_2 \ve v)$$
+$$1_K \ve v = \ve v$$
+A linear space is said to have finite dimension if it is isomorphic to $K^n$
+for some $n$, thus exist a basis $\{\ve e_i\}$.
+
+A function $f : V \to K$ is linear if
+$$f(k_1 \ve v_2 + k_2 \ve v_2) = k_1 f(\ve v_1) + k_2 f(\ve v_2)$$
+for all $i$.
+All linear functions form a linear space $V^\ast$, called the dual space of $V$.
+If $V$ has basis $\{\ve e_i\}$,
+then $V^\ast$ has the coressponding dual basis $\{\phi_i\}$,
+$\phi_i(\ve e_j) = \delta_{ij}$,
+therefore $\dim V = \dim V^\ast$.
+
+\subsection{Tensor}
+Let $V$ be a linear space over $K$, $T : V^k \to K$ is multi-linear if
+$$T(\ve v_1, \dots , a \ve v_i + a^\prime \ve v_i^\prime, \dots, \ve v_k)
+= a T(\ve v_1, \dots, \ve v_i, \dots, \ve v_k)
++ a^\prime T(\ve v_1, \dots, \ve v_i^\prime, \dots, \ve v_k).$$
+A $k$-tensor on $V$ is a multi-linear function $T : V^k \to K$.
+
+If $S$ and $T$ are $k$-tensors on $V$, their sum can be defined by the point wise sum
+$$(S + T)(P) = S(P) + T(P)$$
+where $P \in V^k$ and for $k \in K$, define scalar product
+$$(k S)(P) = k S(P)$$
+Therefore the set of all $k$-tensors on $V$ is made into a linear space
+over $K$, denoted it by $\mathcal{T}^k(V)$.
+We have $\dim \mathcal{T}^k(V) = n^k$.
+
+
+Let $S \in \mathcal{T}^k(V), T \in \mathcal{T}^l(V)$,
+define $S \otimes T$ to be an element in $\mathcal{T}^{k + l}(V)$ by
+$$(S \otimes T)(v_1, \dots v_k, v_{k+1}, \dots, v_{k + l})
+= S(v_1, \dots, v_k)T(v_{k+1}, \dots, v_{k+l})$$
+call it the tensor product of $S$ and $T$.
+We have $$(S_1 + S_2) \otimes T = S_1 \otimes T + S_2 \otimes T.$$
+
+\subsection{Alternating Form}
+Let $P = (\ve v_1, \dots, \ve v_k) \in V^k$, $\sigma \in S_k$,
+define $\sigma(P) = (\ve v_{\sigma(1)}, \dots, \ve v_{\sigma(k)})$.
+Let $T \in \mathcal{T}^k(V)$, $T$ is skew symmetric if
+$$T = (-1)^\sigma T \circ \sigma$$
+for any $\sigma \in S_k$ and $P \in V^k$.
+Let $\Lambda^k(V)$ be the set of all skew symmetric $k$-tensor,
+and define $$\alt : \mathcal{T}^k(V) \to \mathcal{T}^k(V)$$
+$$\alt(T) = {1 \over k!} \sum_{\sigma \in S_k} (-1)^\sigma T \circ \sigma$$
+we have $\im \alt = \Lambda^k(V)$.
+
+Let $S \in \mathcal{T}^k(V), T \in \mathcal{T}^l(V)$,
+define the wedge product of $S$ and $T$ by
+$$S \wedge T = {(k + l)! \over k! l!}\alt(S \otimes T).$$
+
+$\dim \Lambda^k(V) = {n \choose k}$,
+with basis $\phi_{i_1} \wedge \dots \wedge \phi_{i_k}, i_1 < \cdots < i_k$.
+
+The dimension of $\Lambda^k(V)$ be derived via a combinatory approach as follows.
+First we consider the case when $k=2$ for an intituition sense.
+Given $\{e_1, \dots, e_n\}$ a basis of $V$,
+$x = \sum x_i e^i$, $y = \sum y_i e^i$ be twe elements of $V$.
+$T$ a bilinear form $T : V \times V \to K$,
+therefore
+\begin{align*}
+  T(x, y)
+  &= T(\sum x_i e^i, y) \\
+  &= \sum x_i T(e^i, \sum y_j e^j) \\
+  &= \sum x_i (\sum y_j T(e^i, e^j)) \\
+  &= \sum x_i y_j T(e^i, e^j) \\
+  &= \sum x_i y_j c^{ij}
+\end{align*}
+where $c^{ij} = T(e^i, e^j) \in K$ are $n^2$ coefficients fixed for $T$.
+If $T(y, x) = \sum y_i x_j c^{ij} = \sum x_i y_j c^{ji} = -T(x, y)$,
+we have $c^{ij} = -c^{ji}$, then $c^{ii} = 0$, there rest $n^2 - n = 2{n \choose 2}$
+coefficients are divided into $n \choose 2$ pairs, each pair is free to take
+any opposite values in $K$, therefore $\dim \Lambda^2(V) = {n \choose 2}$.
+
+Now let's consider the general case.
+Let $T : V^k \to K$ be a $k$-tensor on a $n$-dimensional linear space $V$,
+then $T$ has the form
+\begin{align*}
+  T(\sum x_i^1 e^i, \dots, \sum x_i^k e^i)
+  &= x_{i_1}^1 \cdots x_{i_k}^k c^{i_1 \dots i_k} \\
+  &= x_{i_1}^1 \cdots x_{i_k}^k c^I
+\end{align*}
+If $c^I$ are the coefficients of a alternating tensor,
+for any $\pi \in S_k$, the coefficients will have the relation
+$$c^I = (-1)^\pi c^{\pi(I)}$$
+If $I = (i_1, \dots, i_k)$ has duplicate components, i.e. there exists
+$i_s = i_t$, $c^I = 0$. The non-zero coefficients are those indexes whose
+all components are different. Since each component $i_j$ ranges in $1, \dots, n$,
+we have ${n \choose k}$ different multi-index class, and $k!$ indexes in each class.
+
+\subsection{Determinant}
+
+\subsection{Pullback Operator}
+Let $W, V$ be $K$ linear spaces, $\phi : W \to V$ a linear transform,
+then there is a linear transform $\phi^\ast : \mathcal T^k(V) \to \mathcal T^(W)$
+$$\phi^\ast(T)(w_1, \dots, w_k) = T(\phi(w_1), \dots, \phi(w_k))$$
+
+\subsection{Multilinear Form}
+A multi-linear form can be consider as homogeneous polynomials.
+Say we have a $n$ dimensional linear space $V$ over $K$, then each element $f$ in the dual space $V^\ast$ 
+is a linear function of $n$ variables in the coordinates.
+A $k$ linear form is a homogenous polnomial of degree $k$.
+

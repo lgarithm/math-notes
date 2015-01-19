@@ -1,0 +1,101 @@
+
+\section{Differential Form}
+\subsection{Tangent Space}
+For each $p \in \mathbb R^n$, the tangent space of $\mathbb R^n$ at $p$,
+is a linear space $\mathbb R^n_p$ isomorphic to $\mathbb R^n$.
+For $p \neq q$, $\mathbb R^n_p \cap \mathbb R^n_q = \emptyset$.
+
+A function $$F : \mathbb R^n \to \bigcup_{p \in \mathbb R^n} \mathbb R^n_p$$ satisifies
+$F(p) \in \mathbb R^n_p$ is called a vector field.
+
+\subsection{Form}
+For each point $p$ of $\mathbb R^n$, $\Lambda^k(\mathbb R^n_p)$ is the set of all alternating
+$k$-tensor of the tangent space of $\mathbb R^n_p$, a $k$-form is a function
+$$\omega : \mathbb R^n \to \bigcup_{p \in \mathbb R^n} \Lambda^k(\mathbb R^n_p)$$
+Therefore $\omega(p)$ is a skew symmetric $k$-tensor at $p$,
+is can be represented by the basis of $\Lambda^k(\mathbb R^n_p)$,
+$(\phi_{i_1})_p \wedge \dots \wedge (\phi_{i_k})_p$
+$$\omega(p) = \sum \omega_{i_1\dots i_k}(p) (\phi_{i_1})_p \wedge \dots \wedge (\phi_{i_k})_p$$
+$\omega_{i_1\dots i_k}(p) \in \mathbb{R}$, so $\omega_{i_1\dots i_k} : \mathbb{R}^n \to \mathbb{R}$.
+
+Let $\omega, \eta$ be forms, then $\omega(p), \eta(p)$ are tensors at $p$,
+so $\omega \wedge \eta$ can be defined as a form by letting
+$(\omega \wedge \eta)(p) = \omega(p) \wedge \eta(p)$,
+and $\omega + \eta$ can de defined if they are of the same type.
+
+
+Since an element in $K$ is a $0$-tensor over a $K$-linear spaces,
+therefore a function $\mathbb{R}^n \to \mathbb{R}$ is a $0$-form,
+because $f(p)$ is an element in $\mathbb{R}$.
+
+For $f : \mathbb{R}^n \to \mathbb{R}$, $Df(p)$ is a linear transform $\mathbb{R}^n \to \mathbb{R}$.
+Define $(df)(p) \in \Lambda^1(\mathbb{R}^1_p)$ by letting $(df)(p)(v_p) = Df(p)(v)$,
+then $df$ is a $1$-form.
+
+Let $x^i$ be a function $x^i : \mathbb R^n \to \mathbb R, x^i(x_1, \dots, x_n) = x_i$,
+then every $k$-form is
+$$\sum \omega_{i_1\dots i_k} dx^{i_1} \wedge \dots \wedge dx^{i_k}$$
+
+
+For a $k$-form $$\omega = \sum \omega_{i_1\dots i_k} dx^{i_1} \wedge \dots \wedge dx^{i_k}$$
+define $d \omega$ to be a $k+1$-form
+$$d \omega = \sum d\omega_{i_1\dots i_k} \wedge dx^{i_1} \wedge \dots \wedge dx^{i_k}$$
+
+
+A form $\omega$ is close if $d \omega = 0$ and is exact if $\omega = d \eta$ for some $\eta$.
+An exact form is close.
+
+\section{Chain}
+
+\subsection{Surface}
+A $k$-surface in $\mathbb{R}^n$ is a map form the unit $k$-cell to $\mathbb{R}^n$$$\varphi: I^k \to \mathbb{R}^n$$
+
+\subsection{Simplex}
+Let $v_0, \dots, v_n \in \mathbb R^n$ be $n + 1$ points in generic position.
+Then they determine a $n$-simplex.
+
+$$\Delta_{v_0\dots v_n} = (-1)^\sigma \Delta_{v_{\sigma(0)}\dots v_{\sigma(n)}}$$
+
+The boundary of $\Delta_{v_0\dots v_n}$ is
+$$\partial \Delta_{v_0\dots v_n} = \sum_{i=0}^n (-1)^{i + 1} \Delta_{v_0 \dots \widehat{v_i} \dots v_n}$$
+The boundary operator $\partial$ has the property that $\partial(\partial \Delta) = 0$,
+or simply $\partial^2 = 0$.
+
+The formal sum of $k$-simplex is a $k$-chain simplex.
+
+
+\section{Differential Manifold}
+
+\subsection{Manifold}
+A topology manifold is a $T_2$ space $M$, and for each $p \in M$,
+there is a neibourhood $U$ of $p$, homeomorphic to a open set of $\mathbb R^n$.
+
+For an open set $U$ of $M$, together with the map $\varphi : M \to \mathbb R^n$,
+$(U, \varphi)$ is called a chart.
+
+An atlas is a collection of charts $\{(U_\alpha, \varphi_\alpha) \mid \alpha \in I\}$.
+
+For $U_\alpha \cap U_\beta \ne \emptyset$, we have the bijection
+$$\varphi_\beta \circ \varphi_\alpha^{-1} \vert_{\varphi_\alpha(U_\alpha\cap U_\beta)} :
+\varphi_\alpha(U_\alpha \cap U_\beta) \to
+\varphi_\beta(U_\alpha \cap U_\beta) $$
+
+A differential structure is an atlas such that all $\varphi_\alpha$
+and $\varphi_\beta \circ \varphi_\alpha^{-1} \vert_{\varphi_\alpha(U_\alpha\cap U_\beta)}$
+are differentiable.
+
+A differential manifold is a topology manifold with differential structure.
+
+\subsection{Tangent Space and Vector Field}
+For each $p \in M$, we associate a linear space of the same dimension as $M$,
+that is $T_pM$, which is isomorphic to $\mathbb R^n$, called the tangent space at $p$.
+
+The tangent bundle $TM$ is the disjoint union of all tangent spaces,
+that is $$TM = \coprod_{p \in M} T_pM$$
+
+A vector field $X$ over $M$ is an assignment to each $p$ an element in $T_pM$,
+that is $X : M \to TM$, $X(p) = X_p \in T_pM$.
+
+All vector fields is denoted by $\mathfrak X(M)$, which is a Lie algebra.
+
+\subsection{Tensor Field}

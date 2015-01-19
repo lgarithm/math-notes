@@ -1,0 +1,227 @@
+\section{Linear Transforms}
+\subsection{Linear Transform between Linear Spaces}
+Let $L, M$ be $K$-linear spaces.
+\begin{defi}
+A map $T : L \to M$ is linear transform if
+\begin{enumerate}[i).]
+\item $T(l_1 + l_2) = T(l_1) + T(l_2)$;
+\item $T(kl) = kT(l)$.
+\end{enumerate}
+\end{defi}
+Let $S, T \to L, M$ be linear transforms, then
+$$S + T : L \to M, \quad (S + T)(l) \to S(l) + T(l)$$
+and
+$$kT : L \to M, \quad (kT)(l) \to kT(l) = T(kl)$$
+are linear transforms.
+The set of all linear transforms from $L$ to $M$,
+$\hom(L, M)$ is also a $K$-linear space.
+
+If we view $K$ as a $K$-linear space, then $\hom(L, K) = V^\ast$.
+
+In next section we will see
+\begin{pro}
+$\dim \hom(L, M) = (\dim L)(\dim M)$ when both $L$ and $M$ are finite dimensional spaces.
+\end{pro}
+
+If $M = L$,
+$$T \circ S : L \to L, \quad (T \circ S)(l) = T(S(l))$$
+is also a linear transform. Therefore linear transform can be iterate,
+$$T^0(l) = {\id}_L, \quad T^n(l) = T(T^{n-1}(l)).$$
+For a polynomial $$f = a_0 + a_1 x + \cdots + a_n x^n \in K[x],$$
+define $$f(T) = a_0 T^0 + a_1 T + \cdots + a_n T^n.$$
+
+Later we will see that there exists a polynomial $p$ such that $p(T) = 0$.
+
+\subsection{Matrix of Linear Transform}
+For a linear transform $T : L \to M$, $L$ has basis $\{e_1, \dots, e_n\}$,
+and $M$ has basis $\{f_1, \dots, f_m\}$.
+Since $T(e_i) \in M$, therefore exist $a_{i1}, \dots, a_{in} \in K$,
+such that $T(e_i) = a_{i1} f_1 + \cdots + a_{im}f_m$.
+Then we can arrange the $nm$ numbers in $n$ rows and $m$ columns,
+$$
+T = \left(\begin{matrix}
+t_{11} & \cdots & t_{1m}	\cr
+\vdots & \ddots & \vdots \cr
+t_{n2} & \cdots & t_{nm}
+\end{matrix}\right)
+$$
+this is called the matrix of $T$ with respect to $\{e_1, \dots, e_n\}$ and $\{f_1, \dots, f_m\}$.
+We can write formally\footnote{Because we write elements of a linear space in a matrix,
+where should be elements of a field.}
+$$
+\left(\begin{matrix}
+T(e_1) \cr \vdots \cr T(e_n)
+\end{matrix}\right)
+=
+\left(\begin{matrix}
+t_{11} & \cdots & t_{1m}	\cr
+\vdots & \ddots & \vdots \cr
+t_{n2} & \cdots & t_{nm}
+\end{matrix}\right)
+\left(\begin{matrix}
+f_1 \cr \vdots \cr f_m
+\end{matrix}\right)
+$$
+Assume an element of $L$ with coordinate $(x_1, \dots, x_n)$ becomes an element of M
+with coordinate $(y_1, \dots, y_m)$, let $a = e_1x_1 + \cdots + e_nx_n$ then
+\begin{align*}
+T(a)
+&= T(e_1x_1 + \cdots + e_nx_n) \\
+&= x_1T(e_1) + \cdots + x_nT(e_n) \\
+&=
+\left(\begin{matrix}
+x_1 \dots x_n
+\end{matrix}\right)
+\left(\begin{matrix}
+T(e_1) \cr \vdots \cr T(e_n)
+\end{matrix}\right) \\
+&=
+\left(\begin{matrix}
+x_1 \dots x_n
+\end{matrix}\right)
+\left(\begin{matrix}
+t_{11} & \cdots & t_{1m}	\cr
+\vdots & \ddots & \vdots \cr
+t_{n2} & \cdots & t_{nm}
+\end{matrix}\right)
+\left(\begin{matrix}
+f_1 \cr \vdots \cr f_m
+\end{matrix}\right) \\
+&=
+\left(\begin{matrix}
+y_1 \cdots y_m
+\end{matrix}\right)
+\left(\begin{matrix}
+f_1 \cr \vdots \cr f_m
+\end{matrix}\right)
+\end{align*}
+That is
+$$
+\left(\begin{matrix}
+y_1 \cdots y_m
+\end{matrix}\right)
+=
+\left(\begin{matrix}
+x_1 \dots x_n
+\end{matrix}\right)
+\left(\begin{matrix}
+t_{11} & \cdots & t_{1m}	\cr
+\vdots & \ddots & \vdots \cr
+t_{n2} & \cdots & t_{nm}
+\end{matrix}\right)
+$$
+
+For a $n$-by-$m$ matrix $T = (t_{ij})$, one can define a linear transform $T$
+by letting $T(e_i) = t_{i1} f_1 + \cdots + t_{im}f_m$.
+
+
+\subsection{Change of Basis}
+Now we take $M = L$, so $m = n$. And fix the basis as $\{e_1, \dots, e_n\}$,
+we can write formally
+$$
+\left(\begin{matrix}
+T(e_1) \cr \vdots \cr T(e_n)
+\end{matrix}\right)
+=
+\left(\begin{matrix}
+t_{11} & \hdots & t_{1n} \cr
+\vdots & \ddots & \vdots \cr
+t_{n1} & \hdots & t_{nn}
+\end{matrix}\right)
+\left(\begin{matrix}
+e_1 \cr \vdots \cr e_n
+\end{matrix}\right)
+$$
+for another basis $\{f_1, \dots, f_m\}$ we have samiliar
+$$
+\left(\begin{matrix}
+T(f_1) \cr \vdots \cr T(f_n)
+\end{matrix}\right)
+=
+\left(\begin{matrix}
+s_{11} & \hdots & s_{1n} \cr
+\vdots & \ddots & \vdots \cr
+s_{n1} & \hdots & s_{nn}
+\end{matrix}\right)
+\left(\begin{matrix}
+f_1 \cr \vdots \cr f_n
+\end{matrix}\right)
+$$
+Let
+$$
+\left(\begin{matrix}
+f_1 \cr \vdots \cr f_n
+\end{matrix}\right)
+=
+\left(\begin{matrix}
+a_{11} & \hdots & a_{1n} \cr
+\vdots & \ddots & \vdots \cr
+a_{n1} & \hdots & a_{nn}
+\end{matrix}\right)
+\left(\begin{matrix}
+e_1 \cr \vdots \cr e_n
+\end{matrix}\right)
+$$
+and
+$$
+\left(\begin{matrix}
+T(f_1) \cr \vdots \cr T(f_n)
+\end{matrix}\right)
+=
+\left(\begin{matrix}
+b_{11} & \hdots & b_{1n} \cr
+\vdots & \ddots & \vdots \cr
+b_{n1} & \hdots & b_{nn}
+\end{matrix}\right)
+\left(\begin{matrix}
+T(e_1) \cr \vdots \cr T(e_n)
+\end{matrix}\right)
+$$
+then
+$$
+\left(\begin{matrix}
+b_{11} & \hdots & b_{1n} \cr
+\vdots & \ddots & \vdots \cr
+b_{n1} & \hdots & b_{nn}
+\end{matrix}\right)
+\left(\begin{matrix}
+T(e_1) \cr \vdots \cr T(e_n)
+\end{matrix}\right)
+=
+\left(\begin{matrix}
+s_{11} & \hdots & s_{1n} \cr
+\vdots & \ddots & \vdots \cr
+s_{n1} & \hdots & s_{nn}
+\end{matrix}\right)
+\left(\begin{matrix}
+a_{11} & \hdots & a_{1n} \cr
+\vdots & \ddots & \vdots \cr
+a_{n1} & \hdots & a_{nn}
+\end{matrix}\right)
+\left(\begin{matrix}
+e_1 \cr \vdots \cr e_n
+\end{matrix}\right)
+$$
+Since $T$ is linear, we have
+$$
+\left(\begin{matrix}
+f_1 \cr \vdots \cr f_n
+\end{matrix}\right)
+=
+\left(\begin{matrix}
+b_{11} & \hdots & b_{1n} \cr
+\vdots & \ddots & \vdots \cr
+b_{n1} & \hdots & b_{nn}
+\end{matrix}\right)
+\left(\begin{matrix}
+e_1 \cr \vdots \cr e_n
+\end{matrix}\right)
+$$
+
+therefore $(b_{ij})$ is the inverse of $(a_{ij})$,
+so $(t_{ij}) = (a_{ij})^{-1}(s_{ij})(a_{ij})$.
+
+\subsection{Normal and Trace}
+Let $T$ be a linear transform over $L$, $M$ be the matrix of $T$ with respect to some basis,
+define $\det T = \det M$ and $\tr T = \tr M$, from previous sections we know $\det$ and $\tr$ are
+well defined, i.e., indenpedent of the chince of the basis.

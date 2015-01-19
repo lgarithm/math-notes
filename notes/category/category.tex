@@ -1,0 +1,426 @@
+\documentclass{article}
+
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{diagrams}
+
+\newtheorem*{cly}{Corollary}
+\newtheorem*{define}{Definition}
+\newtheorem*{eg}{Example}
+\newtheorem*{prf}{Proof}
+\newtheorem*{rem}{Remark}
+\newtheorem*{thm}{Theorem}
+
+
+\newcommand{\abs}[1]{\left| {#1} \right|}
+
+\newcommand{\Hom}{\mathop{\mathrm{Hom}}}
+\newcommand{\id}{\mathop{\mathrm{id}}}
+\newcommand{\dom}{\mathop{\mathrm{dom}}}
+\newcommand{\codom}{\mathop{\mathrm{codom}}}
+\newcommand{\obj}{\mathop{\mathrm{Obj}}}
+\newcommand{\arrow}{\mathop{\mathrm{Arrow}}}
+
+\title{Notes for Categoty Theory}
+\begin{document}
+\maketitle
+
+\section{Basic Concepts}
+\subsection{Category}
+In traditional mathematics based on set,
+we study set and maps(also called functions) between sets.
+A set is a collction of elements, and a map transform an element to another.
+
+However, in category theory, the basic concepts are class, object and morphism.
+A class is the analogy to set and an object is the analogy to element,
+therefore morphism is the analog to mapping between sets.
+
+\begin{define}[category]
+A category $\mathcal{C}$ consists of a class of objects, and for any
+two objects $A, B$, there are disjoint sets of morphisms
+$\Hom(A, B)$ between them, for three objects $A, B$ and $C$,
+there is a map $\Hom(A, B) \times \Hom(B, C) \to \Hom(A, C)$,
+satisfy:
+\begin{enumerate}[1).~]
+\item for any object $A$, exists $\id_{A} \in \Hom(A, A)$,
+such that, $\id_{A} \circ f = f$, $g \circ \id_{A} = g$;
+\item for any $f \in \Hom(A, B)$, $g \in \Hom(B, C)$,
+$h \in \Hom(C, D)$, $(f \circ g) \circ h = f \circ (g \circ h)$.
+\end{enumerate}
+\end{define}
+
+\begin{rem}
+If $(f,g) \to h$, we often write $h = g \circ f$, notice the
+order. Object may not be set and morphism may not be map
+between sets.
+\end{rem}
+
+\begin{eg}
+Sets and functions between them form a catgory, the category
+of sets.
+\end{eg}
+
+\begin{rem}
+Category can be represenet by a multi-graph. The objects in
+the category are node of the graph, the morphisms are the
+directed edges(we call arrow here). And for each arrow, it
+has a source(domain) node and a target(codomain) node.
+Of course the source and target of an arrow can be the same,
+we then call that arrow an endomorphism.
+\end{rem}
+
+Let $A, B, C$ be objects of category $\mathcal C$,
+and $f \in \hom(A, B)$, $g \in \hom(B, C)$, $h \in \hom(A, C)$
+we say the following diagram commutes if $g \circ f = h$.
+\begin{diagram}
+A & \rTo^{f}  & B \\
+  & \rdTo_{h} & \dTo>{g} \\
+  &           & C
+\end{diagram}
+Generally, the diargam can have more vertices and edges, and is commutative as
+long as all path connecting two vertics are identical morphisms.
+
+\subsection{Functor and Cofunctor}
+Functors are map between categories. Remember category
+consists of objects and morphisms, so a functor must map
+object to object and map morphism to morphism.
+
+\begin{define}[functor]
+Let $\mathcal C$ and $\mathcal D$ be two categories,
+a functor $\mathcal F$ assigned each object $A \in \mathcal C$
+an object $\mathcal F(A) \in \mathcal D$;
+and for each morphism $f \in \Hom(A, B)$,
+$\mathcal F(f) \in \Hom(\mathcal F(A), \mathcal F(B))$,
+such that $\mathcal F(\id_A) = \id_{\mathcal F(A)}$,
+and $\mathcal F(g \circ f) = \mathcal F(g) \circ \mathcal F(f)$.
+\end{define}
+
+A functor maps a commutative diagram in $\mathcal C$ to one in $\mathcal D$.
+
+\begin{minipage}{0.3\textwidth}
+\begin{diagram}
+A & \rTo^{f}          & B \\
+  & \rdTo_{g \circ f} & \dTo>{g} \\
+  &                   & C
+\end{diagram}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+\begin{diagram}
+ &  & \\
+ & \rTo^{\mathcal F} & \\
+ &  &
+\end{diagram}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+\begin{diagram}
+\mathcal F(A) & \rTo^{\mathcal F(f)}          & \mathcal F(B) \\
+              & \rdTo_{\mathcal F(g \circ f)} & \dTo>{\mathcal F(g)} \\
+              &                               & \mathcal F(C)
+\end{diagram}
+\end{minipage}
+
+\begin{define}[cofunctor]
+A cofunctor, or contravariant functor is almost like a functor,
+except for $\mathcal F(f) \in \Hom(B, A)$ and
+$\mathcal F(g \circ f) = \mathcal F(f) \circ \mathcal F(g)$.
+\end{define}
+
+A cofunctor maps a commutative diagram in $\mathcal C$ to one in $\mathcal D$
+and reverse all morphisms.
+
+\begin{minipage}{0.3\textwidth}
+\begin{diagram}
+A & \rTo^{f}          & B \\
+  & \rdTo_{g \circ f} & \dTo>{g} \\
+  &                   & C
+\end{diagram}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+\begin{diagram}
+ & & \\
+ & \rTo^{\mathcal F} & \\
+ & &
+\end{diagram}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+\begin{diagram}
+\mathcal F(A) & \lTo^{\mathcal F(f)}          & \mathcal F(B) \\
+              & \luTo_{\mathcal F(g \circ f)} & \uTo>{\mathcal F(g)} \\
+              &                               & \mathcal F(C)
+\end{diagram}
+\end{minipage}
+
+\begin{eg}
+For any category $\mathcal C$ whose objects has an underlying set,
+there is a functor from $\mathcal C$ to the category of set,
+which simply sends an object to its underlying set,
+and sends the morphisms to map between sets.
+This functor is called the forgetful functor.
+\end{eg}
+
+
+\subsection{Natural Transformation}
+Natural Transformations are morphisms between functors.
+\begin{define}[natural transformation]
+Let $\mathcal F, \mathcal G$ be two functors, both from $\mathcal C$ to $\mathcal D$.
+A natural transformation $\sigma$ sends each object $A$ of $\mathcal C$ to
+a morphism in $\hom_{\mathcal D}(\mathcal F(A), \mathcal G(A))$.
+such that for any object $B$ in $\mathcal C$ and morphism $f$ in $\hom_{\mathcal C}(A, B)$,
+we have
+$$\sigma(B) \circ F(f) = G(f) \circ \sigma(A)$$
+\end{define}
+That is the following diagram commutes.
+% A --f-> B
+% F(A) --F(f)-> F(B)
+%  |              |
+% s(A)          s(B)
+%  |               |
+% G(A) --G(f)-> G(B)
+\begin{diagram}
+\mathcal F(A)    & \rTo^{\mathcal F(f)} & \mathcal F(B) \\
+\dTo<{\sigma(A)} &                      & \dTo>{\sigma(B)} \\
+\mathcal G(A)    & \rTo_{\mathcal G(f)} & \mathcal G(B)
+\end{diagram}
+
+\section{Constructions}
+\subsection{Functor Category}
+Let $\mathcal F, \mathcal G, \mathcal H$ be functors from $\mathcal C$ to $\mathcal D$,
+and $\sigma(A) : \mathcal F(A) \to \mathcal G(A)$, $\tau : \mathcal G(A) \to \mathcal H(A)$.
+Define $(\tau \circ \sigma)(A) : \mathcal F(A) \to \mathcal H(A)$ by $\tau(A) \circ \sigma(A)$.
+Then $\tau \circ \sigma$ is a natural transformation from $\mathcal F$ to $\mathcal H$.
+As shown from the commutative diagram below:
+\begin{diagram}
+\mathcal F(A)    & \rTo^{\mathcal F(f)} & \mathcal F(B) \\
+\dTo<{\sigma(A)} &                      & \dTo>{\sigma(B)} \\
+\mathcal G(A)    & \rTo_{\mathcal G(f)} & \mathcal G(B) \\
+\dTo<{\tau(A)} &                      & \dTo>{\tau(B)} \\
+\mathcal H(A)    & \rTo_{\mathcal H(f)} & \mathcal H(B)
+\end{diagram}
+
+Let $\mathcal F : \mathcal C \to \mathcal D$ be the objects and $\circ$ be the morphisms,
+this category is called the functor category.
+
+\subsection{Category of Categories}
+
+
+\section{Operations}
+\subsection{Product and Coproduct}
+Let $\mathcal{C}$ be a category, $A$ and $B$ be objects of
+$\mathcal{C}$. When $A$ and $B$ are sets, we can construct
+the cartesian product and disjoint union of them, now we
+define the analogy terms in the language of category.
+
+\begin{define}[product]
+The product of $A$ and $B$ is a object $C$, with morphisms
+$p: C \to A$ and $q: C \to B$, such that for any object
+$X$ in $\mathcal{C}$, and morphisms $f: X \to A$, $g: X \to B$,
+exists unique morphism $\theta : X \to C$,
+$f = p \circ \theta$, $g = q \circ \theta$.
+\end{define}
+
+When $A$, $B$ are sets, $C = A \times B$, $p$ and $q$ are
+projection maps, $\theta(x)$ can be constructed by
+$\theta(x) = (f(x), g(x))$.
+
+\begin{define}[coproduct]
+The coproduct of $A$ and $B$ is a object $C$, with morphisms
+$\alpha : A \to C$, $\beta : B \to C$, such that for any
+object $X$ in $\mathcal{C}$, and morphisms $f: A \to X$,
+$g: B \to X$, exists unique morphism $\theta : C \to X$,
+$f = \theta \circ \alpha$, $g = \theta \circ \beta$.
+\end{define}
+
+When $A$ and $B$ are sets, $C = A \amalg B$, $\alpha$ and
+$\beta$ are inclusion maps, $\theta(c)$ can be constructed
+by $\theta(a') = f(a)$ and $\theta(b') = g(b)$.
+Coproduct also called sum in some books.
+
+\subsection{Pushout and Pullback}
+
+\subsection{Limit and Colimit}
+
+\section{Special Objects}
+\subsection{Initial Object and Final Object}
+In a category, if for any object $O$, there is exactly one
+morphism from $X$ to $A$, then $X$ is called an initial object.
+If for any object $A$, there is exactly one morphism from $A$ to $Y$,
+then $Y$ is called a final object.
+
+
+\section{Functional Category Theory}
+Let $A, B, \dots$ be types, and $f, g, \dots$ be transformations between types.
+For each type $X$, we have the identity transformation $\id_X$.
+For $f : A \to B$ and $g : B \to C$, we have $g \circ f : A \to C$.
+
+Then the types and transformations form a category.
+Types are also called objects and transformations are also called arrows or morphisms.
+
+For arrow $f : A \to B$, we say $f$ has type $A \to B$,
+and $A$ is the domain of $f$, $B$ is the codomain of $f$.
+When an object $A$ is a also a set, we say $a$ has type $A$ is $a \in A$.
+
+Let $\mathfrak{C}, \mathfrak{D}$ be two categories, a functor $\mathcal{F}$
+maps an arrow of $\mathfrak{C}$ to an arrow of $\mathfrak{D}$
+such that $\mathcal{F}(g \circ f) = \mathcal{F}(g) \circ \mathcal{F}(f)$.
+It's easy to verify that $\mathcal{F}(\id_X)$ is also an identity arrow.
+So for an object $X \in \mathfrak{C}$, $\mathcal{F}$ will map $X$ to
+$\dom \mathcal{F}(\id_X) = \codom \mathcal{F}(\id_X)$.
+
+Locally, a functor has type $(A \to B) \to (C \to D)$.
+
+Let $\mathcal{F}, \mathcal{G} : \mathfrak{C} \to \mathfrak{D}$ be functors,
+$\tau : \obj(\mathfrak{C}) \to \arrow(\mathfrak{D})$ is a morphism of functors if
+for any $f : A \to B$ in $\mathfrak{C}$, $\tau(B) \circ \mathcal{F}(f) = \mathcal{G}(f) \circ \tau(A)$.
+Or equivalently, $\tau(\codom f) \circ \mathcal{F}(f) = \mathcal{G}(f) \circ \tau(\dom f)$
+
+\subsection*{Exercise}
+\begin{enumerate}[1.]
+\item Prove that $\mathcal{F}(\id_X)$ is also an identity arrow.
+\end{enumerate}
+
+\subsection{Functor}
+A functor may be viewed an overloaded function on both $\obj(\mathfrak C)$ and
+$\arrow(\mathfrak C)$.
+
+Let $\mathcal F : \mathfrak A \to \mathfrak B$ be a functor,
+for $f : x \to y \in \hom(x, y), x, y \in \mathfrak A$,
+$\mathcal F(f)$ is an arrow in $\mathfrak B$.
+
+
+\subsection{Natural Transformation}
+A natural transformation
+$\sigma : \mathcal S \to \mathcal T,
+\mathcal S, \mathcal T : \mathfrak A \to \mathfrak B$ has type
+$\obj(A) \to \hom(B)$.
+
+
+\subsection{Function Category}
+
+\subsection{Category of Categories}
+
+\subsection{Monad}
+
+\subsection{Abelian Category}
+For each $X, Y \in \mathcal{C}$, $\hom(X, Y)$ is an abelian group,
+that is, there is a operation $\cdot : \hom(X, Y) \times \hom(X, Y) \to \hom(X, Y)$,
+the morphism $\circ : \hom(X, Y) \times \hom(Y, Z) \to \hom(X, Z)$ is bilinear.
+That is $(f_1 \cdot f_2) \circ g = (f_1 \cdot g) \circ (f_2 \cdot g)$
+and $f \circ (g_1 \cdot g_2) = (f \cdot g_1) \circ (f \cdot g_2)$.
+
+
+\section{Algebra and Coalgebra}
+\subsection{Review of $R$-Algebra}
+Let $R$ be a ring with identity, an $R$-algebra is an $R$-module $A$ with
+multiplication $\cdot : A \times A \to A$, and the multiplication
+satisifies:
+\begin{enumerate}
+\item bilinear: $(r a_1) \cdot a_2 = r (a_1 \cdot a_2) = a_1 \cdot (r a_2)$
+\item distribution law: $a_1 \cdot (a_2 + a_3) = a_1 \cdot a_2 + a_1 \cdot a_3$,
+  $(a_1 + a_2) \cdot a_3 = a_1 \cdot a_3 + a_2 \cdot a_3$
+\item associative law: $(a_1 \cdot a_2) \cdot a_3 = a_1 \cdot (a_2 \cdot a_3)$
+\end{enumerate}
+Therefore $(A, +, \cdot)$ is a ring.
+We often omit $\cdot$ and write $a_1a_2$ instead of $a_1 \cdot a_2$.
+
+Define a map $\sigma: R \to A$ by $r \to r 1_A$,
+then $\sigma$ is a ring homomorphism from $R$ to $A$ and
+$\sigma(R) \subseteq Z(A)$.
+
+\subsection{Monad}
+Let $\mathcal X$ be a category, a monad over $\mathcal X$ is a tuple $(\mathcal T, \mu, \eta)$,
+where $\mathcal T$ is an endofunctor of $\mathcal X$, $\mu : \mathcal T^2 \to \mathcal T$
+and $\eta : \mathcal I \to \mathcal T$ are natural transformations,
+where $\mathcal I$ is the identity functor of $\mathcal X$.
+$\mu$ and $\eta$ satisify certain commutative diagrams mentioned following.
+
+\subsubsection{The Composition}
+Let $\mathcal X$ be a category, and $\mathcal T$ an endofunctor of $\mathcal X$.
+$\mu$ is a matural transform from $\mathcal T$ to $\mathcal T^2$.
+That is, for $x, y \in \mathcal X$ and $f \in \hom_{\mathcal X}(x, y)$
+we have the following commutative diagram in $\mathcal X$:
+\begin{diagram}
+\mathcal T^2(x) & \rTo^{\mathcal T^2(f)} & \mathcal T^2(y) \\
+\dTo<{\mu(x)}   &                        & \dTo>{\mu(y)} \\
+\mathcal T(x)   & \rTo^{\mathcal T(f)}   & \mathcal T(y)
+\end{diagram}
+If We apply $\mathcal T$ to this diagram then we got
+\begin{diagram}
+\mathcal T^3(x) & \rTo^{\mathcal T^3(f)} & \mathcal T^3(y) \\
+\dTo<{\mathcal T(\mu(x))} &              & \dTo>{\mathcal T(\mu(y))} \\
+\mathcal T^2(x) & \rTo^{\mathcal T^2(f)} & \mathcal T^2(y)
+\end{diagram}
+And if we apply $\mathcal T$ to $f : x \to y$,
+that is replace $x, y, f$ by $\mathcal T(x)$,
+$\mathcal T(y)$ and $\mathcal T(f)$ respectly,
+then we got
+\begin{diagram}
+\mathcal T^3(x) & \rTo^{\mathcal T^3(f)} & \mathcal T^3(y) \\
+\dTo<{\mu(\mathcal T(x))} &              & \dTo>{\mu(\mathcal T(y))} \\
+\mathcal T^2(x) & \rTo^{\mathcal T^2(f)} & \mathcal T^2(y)
+\end{diagram}
+
+The latter two commutative diagrams can be connect to the first one
+
+\begin{minipage}{.5\textwidth}
+\begin{diagram}
+\mathcal T^3(x) & \rTo^{\mathcal T^3(f)} & \mathcal T^3(y) \\
+\dTo<{\mathcal T(\mu(x))} &              & \dTo>{\mathcal T(\mu(y))} \\
+\mathcal T^2(x) & \rTo^{\mathcal T^2(f)} & \mathcal T^2(y) \\
+\dTo<{\mu(x)}   &                        & \dTo>{\mu(y)} \\
+\mathcal T(x)   & \rTo^{\mathcal T(f)}   & \mathcal T(y)
+\end{diagram}
+\\
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+\begin{diagram}
+\mathcal T^3(x) & \rTo^{\mathcal T^3(f)} & \mathcal T^3(y) \\
+\dTo<{\mu(\mathcal T(x))} &              & \dTo>{\mu(\mathcal T(y))} \\
+\mathcal T^2(x) & \rTo^{\mathcal T^2(f)} & \mathcal T^2(y) \\
+\dTo<{\mu(x)}   &                        & \dTo>{\mu(y)} \\
+\mathcal T(x)   & \rTo^{\mathcal T(f)}   & \mathcal T(y)
+\end{diagram}
+\\
+\end{minipage}
+To construct a $\mathcal T$-algebra, we add a new condition
+which requires the following diagram commutes for each $x \in \mathcal X$
+\begin{diagram}
+\mathcal T^3(x) & \rTo^{\mathcal T(\mu(x))} & \mathcal T^2(x) \\
+\dTo<{\mu(\mathcal T(x))} & & \dTo>{\mu(x)} \\
+\mathcal T^2(x) & \rTo^{\mu(x)} & \mathcal T(x)
+\end{diagram}
+
+\subsubsection{The Unit}
+Let $\mathcal I$ be the identity functor of $\mathcal X$,
+and $\eta$ a naturan transformation from $\mathcal I$ to $\mathcal T$:
+\begin{diagram}
+\mathcal I(x) & \rTo^{\mathcal I(f)} & \mathcal I(y) \\
+\dTo<{\eta(x)} & & \dTo>{\eta(y)} \\
+\mathcal T(x) & \rTo^{\mathcal T(f)} & \mathcal T(y)
+\end{diagram}
+Apply $\mathcal T$ to this commutative diagram
+\begin{diagram}
+\mathcal T(x) & \rTo^{\mathcal T(f)} & \mathcal T(y) \\
+\dTo<{\mathcal T(\eta(x))} & & \dTo>{\mathcal T(\eta(y))} \\
+\mathcal T^2(x) & \rTo^{\mathcal T^2(f)} & \mathcal T^2(y)
+\end{diagram}
+Apply $\mathcal T$ to $f : x \to y$:
+\begin{diagram}
+\mathcal T(x) & \rTo^{\mathcal T(f)} & \mathcal T(y) \\
+\dTo<{\eta(\mathcal T(x))} & & \dTo>{\eta(\mathcal T(y))} \\
+\mathcal T^2(x) & \rTo^{\mathcal T^2(f)} & \mathcal T^2(y)
+\end{diagram}
+
+And we also require that the following diagrams commutes
+\begin{diagram}
+\mathcal I(x) & \rTo^{\eta(x)} & \mathcal T(x) \\
+\dTo<{\eta(x)} & & \dTo>{\mathcal T(\eta(x))} \\
+\mathcal T(x) & \rTo_{\eta(\mathcal T(x))} & \mathcal T^2(x))
+\end{diagram}
+
+\subsection{$\mathcal T$-Algebra}
+For a monad $(\mathcal T, \mu, \eta)$, the $\mathcal T$-algebra is a
+pair $(x, h)$ where $x$ is an object of $\mathcal X$ and $h : \mathcal T(x) \to x$.
+$h$ is called the structure map.
+
+\end{document}

@@ -1,0 +1,58 @@
+\section{Period}
+\subsection{Period}
+The concatenation of $s$ and itself $ss$ can be denoted by
+$s^2$, and $s^n$ denote the concatenation of $n$ copies of
+$s$. $s^0 = \epsilon$.
+
+\begin{defi}[period]
+Let $s, t$ be strings, $t$ is a period of $s$ if and only if
+$s = t^n$ for some $n$.
+\end{defi}
+
+Obviously $s$ itself is a period of $s$, we call it the trivial 
+period of $s$, other periods are called non-trival periods.
+A string which has no non-trivial periods is called a primitive 
+string.\footnote{The number of primitive strings of length $n$
+over an alphabet of size $q$ can be calculated using m\"obius 
+inversion formula.}
+% The following theorem tells 
+\begin{thm}
+If $A$ and $B$ are strings and $A^m = B^n$, $(m,n)=1$, then $A=s^n$
+and $B=s^m$ for some string $s$.
+\end{thm}
+
+\begin{prf}
+$i$ run through $[mn]$, $(i \bmod{m} , i \bmod{n})$ run through
+$[m] \times [n]$.
+\end{prf}
+
+We say integer $k > 0$ is a pseudo cycle of $s$ if $s(i)=s(i+k)$
+for $1 \leq i < i + k \leq \abs{s}$, and is a cycle
+if $k \mid \abs{s}$. The theorem above tells if $k,d$ are
+cycle of $s$, so is $(k,d)$.
+
+\begin{thm}
+Let $s$ be a non-primitive string, $d$ is the minimum period of $s$,
+$k$ is a pseudo period of $s$, then $d \leq k$.
+\end{thm}
+
+\subsection{Shift}
+The shift of a string $s$ is the string $t$ for which 
+$t(i) = s(i+1) \, (1 \leq i < \abs{s})$ and $t(\abs{s}) = s(1)$.
+The $k$th shift of a string $s$ $\shift^k(s) = \shift(\shift^{k-1}(s))$.
+When $n \mid k$, we say $\shift^k(s)$ is a trivial shift of $s$, 
+otherwise a non-trivial shift.
+
+\begin{thm}
+If $s = \shift^k(s)$, then $s = t^d$ for some $t$, $d = (k,\abs{s})$.
+\end{thm}
+
+\begin{cly}
+A string equal to the non-trivial shift of itself is not primitive.
+\end{cly}
+
+\begin{thm}
+If $s$ is a substring of $a^n$,
+then $s$ is a prefix of $(shift^k(a))^n$ for some $k$;
+and is a suffix of $(shift^l(a))^n$ for some $l$.
+\end{thm}

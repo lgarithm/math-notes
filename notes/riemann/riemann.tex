@@ -1,0 +1,111 @@
+% \documentclass[14pt]{extarticle}
+\documentclass{article}
+\usepackage{amssymb}
+% \usepackage[T1]{fontenc}
+
+\newcommand{\alt}{\mathop{\mathrm{Alt}}}
+
+\title{Notes on Riemann Grometry}
+\author{Lgarithm\\\mbox{lgarithm@gmail.com}}
+
+\begin{document}
+% \maketitle
+
+\section{Multilinear Algebra}
+
+\subsection{Linear Space}
+Let $\mathfrak K$ be a field.
+A $\mathfrak K$-linear space is an abelian group $L$,
+such that there is a map $\mathfrak K \times L \to L$
+satisfies the associative law and distribution law.
+
+\subsection{Vector}
+$V = \mathfrak K^n$ is called a vector space of dimension $n$.
+
+Each element of $V$ is called vector, for $v \in V$, $v$ can be
+represented by $n$ elements in $\mathfrak K$, $v = (v^1, \dots, v^n)$.
+
+Let $e_i = (0, \dots, 1, \dots, 0)$,
+then $v = e_iv^i$
+
+For vectors $v_1, \dots, v_n \in V$, and elements $a^1, \dots, a^n \in \mathfrak K$,
+$v_1a^1 + \dots + v_na^n$ is simple denoted $v_ia^i$.
+
+\subsection{Covector}
+A covector is a linear map $f : V \to \mathfrak K$, all covectors is called the dual space of $V$, denoted by $V^\ast$.
+
+Let $e_i^\ast \in V^\ast$, such that $e_i^\ast(e_j) = \delta_i^j$, then $\{e_i^\ast\}$ is a basis of $V^\ast$.
+
+$(V^\ast)^\ast \cong V$.
+$V$ and $V^\ast$ are $\mathfrak K$-linear spaces.
+The tensors over $V$ are also $\mathfrak K$-linear spaces.
+
+
+\subsection{Tensor}
+Let $V_1, \dots V_k$ be $\mathfrak K$-linear spaces,
+a map $f : V_1 \times \dots \times V_k \to \mathfrak K$ is
+multilinear if $f(v_1a^1, \dots, v_ka^k) = f(v_1, \dots, v_k)a^1\cdots a^k$.
+When $V_1 = \cdots = V_k = V$, we say $f$ is a covariant $k$-tensor over $V$;
+when $V_1 = \cdots = V_k = V^\ast$, we say $f$ is a contravariant $k$-tensor over $V$;
+when $V_1 \times \dots \times V_k = V^r \times (V^\ast)^s$,
+we say $f$ is a tensor of type $\choose{r s}$.
+
+All tensors of type $(r, s)$ is denoted by $\mathcal T^r_s(V)$,
+especially $\mathcal T^k(V) = \mathcal T^k_0(V)$,
+$\mathcal T_k(V) = \mathcal T^0_k(V)$.
+
+% A covariant $k$-tensor is a tensor of type $(k, 0)$,
+% a contravariant $k$-tensor if a tensor of type $(0, k)$.
+
+For $S \in \mathcal T^k(V)$ and $T \in \mathcal T^l(V)$,
+define $(S \otimes T) : V^{k + l} \to \mathfrak K$ by $(S \otimes T)(v_1, \dots, v_k, v_{k+1}, \dots, v_{k+l})
+= S(v_1, \dots, v_k)T(v_{k+1}, \dots, v_{k+1})$.
+This gives a map $\otimes : \mathcal T^k(V) \times \mathcal T^l(V) \to \mathcal T^{k+l}$,
+$\otimes$ is called tensor product.
+For $\sigma \in S_k$ and $T \in \mathcal T^k(V)$,
+define $(T \circ \sigma)(v_1, \dots, v_k) = T(v_{\sigma(1)}, \dots, v_{\sigma(k)})$,
+$T$ is a alternating form if $T = (-1)^\sigma T \circ \sigma$.
+
+Define $\alt : \mathcal T^k(V) \to \mathcal T^k(V)$ by
+$\alt(T) = {1 \over k!} \sum_{\sigma \in S_k} (-1)^\sigma T \circ \sigma$,
+and let $\Lambda^k(V) = \alt(\mathcal T^k(V))$.
+
+For $\sigma \in S_k$ and $T \in \mathcal T^k(V)$,
+define $S \wedge T = {(k + l)! \over k! l!} \alt(S \otimes T)$.
+
+
+\section{Differential Manifold}
+
+\subsection{Manifold}
+A manifold is an object which is locally isomorphic to an euclid space.
+
+\subsection{Tangent Space}
+
+$T_p(M) \cong \mathbb R^n$
+
+$$T(M) = \coprod_{p \in M} T_p(M)$$
+
+
+\subsection{Vector Field}
+A vector Field $X$ assigns each $p \in M$
+a tangent vector $X_p \in T_p(M)$.
+
+All vector fields is denoted by $\mathfrak X(M)$,
+which forms a Lie algebra.
+For $X, Y \in \mathfrak X(M)$,
+
+\subsection{Tensor Field}
+$\mathcal T^r_{s \, p}(M) = \mathcal T^r_s(T_p(M))$
+
+$$\mathcal T^r_s(M) = \coprod_{p \in M} \mathcal T^r_{s \, p}(M)$$
+
+\subsection{Riemann Metric}
+The Riemann metric $g$ assign each tangent space $T_p(M)$ a inner product $g_p$,
+such that the function of $p$, $g(X, Y)(p) = g_p(X_p, Y_p)$ is differentiable.
+
+\subsection{Connection}
+
+The affine connection $\nabla : \mathfrak X(M) \times \mathfrak X(M) \to \mathfrak X(M)$,
+$(X, Y) \to \nabla_X Y$, satisfies:
+
+\end{document}

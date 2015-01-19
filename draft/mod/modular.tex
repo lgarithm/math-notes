@@ -1,0 +1,207 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\newtheorem{prop}{Proposition}
+
+\def\abs#1{\left| {#1} \right|}
+\def\ceil#1{\lceil {#1} \rceil}
+\def\zmod#1{\mathbb Z / {#1} \mathbb Z}
+\def\zmodu#1{U(\mathbb Z / {#1} \mathbb Z)}
+\def\ann{\mathop{\mathrm{ann}}}
+\def\ord{\mathop{\mathrm{ord}}}
+
+\title{Discrete Root in $\mathbb Z / n \mathbb Z$}
+
+\author{Lgarithm\\\mbox{lgarithm@gmail.com}}
+
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+Given integer $a, m$ and $n$, it's easy to compute the exponenet $a^m$ modulo $n$,
+but the discrete root and discrete logarithm are not as easy as exponent.
+
+In this article, we will study the equation
+$$x^m \equiv b \pmod n$$
+in detail and give algorithms to determine the existence of solution,
+and number of solutions if exists.
+
+Note that when $m = 2$, this is exactly the quadratic residue problem.
+\end{abstract}
+
+\section*{Notations}
+\begin{tabular}{l l}
+$[a]_n$    & the equivalent class of $a$ modulo $n$ \\
+$v_p(a)$   & index of prime $p$ in a ration number $a$ \\
+$R^\ast$   & $R \backslash \{0\}$ \\
+$U(R)$     & units of a ring $R$ \\
+\end{tabular}
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+Let $n = \prod p_i^{e_i}$ be the factorization of $n$, and $q_i = p_i^{e_i}$.
+According to the CRT, we only need to solve $x_i^m \equiv b \pmod {q_i}$ for each $q_i$.
+
+For $q = p^e$, there are three situations,
+\begin{enumerate}
+\item $(b, p) = 1$
+\item $p \mid b$ and $q \not| b$
+\item $b \equiv 0 \pmod q$
+\end{enumerate}
+In terms of the ring $\zmod q$, those cases corresponding to $b$ is a unit, $b$ is a zero factor
+and $b$ is 0.
+
+For the first case, $b \in \zmodu q$, and $\zmodu q$ is a cyclic
+group of order $\phi(q)$ when $p \neq 2$, for $q$ has primitive roots when $p$ is odd.
+
+For the second case, notice that $b$ is contained in the unique maxical ideal of $\zmod q$,
+so we may consider $\zmod q$ as a discrete valuation ring though it's not a domain.
+
+For the thired case, which indeed is the simplest one. We have $m v_p(x) \geq e$
+i.e. $v_p(x) \geq \ceil{e \over m}$.
+
+\section{Modular Arithmetic}
+This section we discuss the linear equation $ax + by = c$ where $a, b, c$ are integers.
+The results are indeed elementary, we just presented here for sake of completeness.
+
+\subsection{Divisability and Congruence}
+The following three statements are equivalent according to definition.
+\begin{enumerate}
+\item $a \equiv b \pmod n$
+\item $n \mid a - b$
+\item $\exists k \in \mathbb Z$, such that $kn = a - b$
+\end{enumerate}
+
+We will often switch among any of these three equivalent representations.
+
+\subsection{Modular Inverse}
+For integer $n \neq 0$ and $a$, we say $b$ is a modular inverse of $a$ modulo $n$ if $ab \equiv 1 \pmod n$.
+Let $A = \{a_1, \dots, a_{\phi(n)}\}$ be a reduced residue system modulo $n$,
+for $a \in A$, we have $aa_1, \dots, aa_{\phi(n)}$ is a also a reduced residue system modulo $n$.
+Therefore, there must be some $a_i$ such that $aa_i \equiv 1 \pmod n$.
+
+
+\subsection{The Primary Ideal $L(a, b)$}
+For non-zero integers $a, b$, define $L(a, b) = \{ax + by \mid x, y \in \mathbb Z\}$.
+When $(a, b) = 1$, take $x_0 \equiv a^{-1} \pmod b$, then $ax_1 \equiv 1 \pmod b$,
+equivalently $b \mid ax_1 - 1$, that is to say, exists $y_1 \in \mathbb Z$, suth that $ax_1 + by_1 = 1$.
+Therefore, for $k \in \mathbb Z$, take $x = kx_1, y = ky_1$, we got $k \in L(a, b)$,
+$L(a, b) = \mathbb Z$ when $(a, b) = 1$.
+
+When $(a, b) = d > 1$, it's easy to see that $L(a, b) = \{dk \mid k \in \mathbb Z\}$.
+
+\subsection{The Equation $ax + by = c$}
+$ax + by = c$ has a solution if and only if $c \in L(a, b)$, equivalently $(a, b) \mid c$.
+
+\subsection{The Equation $ax \equiv b \pmod n$}
+We shall determine all solutions for the equation of $x$ modulo $n$.
+When $(a, n) = 1$, there is only one solution $x \equiv ba^{-1} \pmod n$ module $n$.
+All solutions are $ba^{-1} + tn, t \in \mathbb Z$.
+
+
+When $(a, n) = d > 1$, rewrite the equation in the form
+$ax + ny = b$, when $(a, n) \not| b$, it has no solutions.
+otherwise let $a = a_0 d$, $b = b_0d$, $n = n_0 d$, where $d = (a, n)$.
+then the equation becomes $a_0 x + n_0 y = b_0$, $(a_0, n_0) = 1$,
+equivalently $a_0 x \equiv b_0 \pmod n_0$, $(a_0, n_0) = 1$.
+We already know all solutions for this equation are
+$b_0 a_0^{-1} + t n_0, t \in \mathbb Z$, where $a_0^{-1}$ is the modular inverse of
+$a_0$ modulo $n_0$. Since $n_0 = {n \over d}$, we have $d$ solutions modulo $n$,
+namely $b_0 a_0^{-1} + k n_0, k = 0, \dots, d - 1$.
+
+
+\section{Cyclic group}
+In this section we determine the number of solutions of $x^m = b$ in a finite cyclic group $G$.
+Let $g$ be a generator of $G$, we have the canonical isomorphism
+$$\sigma_g: G \to \zmod n, \quad \sigma(g^k) = [k]_n$$ where $n = \abs G$.
+
+Then the equation $x^m = b$ in $G$ becomes the familiar one
+$$m \sigma_g(x) \equiv \sigma_g(b) \pmod n$$
+it has $(m, n)$ solutions when $(n, m) \mid \sigma_g(b)$
+and has none otherwise. Notice that the number of solutions is independent of choice of $g$.
+
+The function $\sigma_g$ is well defined, but for $x \in G$, it's usually not easy to find a
+$k \in \mathbb Z$ such that $x^k = g$. And find a generator $g$ in $G$ is not always easy either.
+However, we can determine the existence of solutions of $x^m = b$ without $g$ and $\sigma_g$.
+
+Note that $\sigma_g(x)$ is actually the discrete logarithm of $x$ based $g$.
+
+\subsection{The Order of an Element}
+For any group $G$ and $b \in G$, if there exists $r \in \mathbb Z^\ast$ such that $b^r = e_G$,
+we say $b$ is an element of finite order. If $b$ is an element of finite order,
+there must be a minimum positive integer $\ord_G(b)$, we call the order of $b$.
+In fact, $\ann_G(b) = \{r \mid b^r = e_G\}$ forms an ideal of $\mathbb Z$,
+$\ord_G(b)$ is the generator of $\ann_G(b)$. $\abs G \in \ann_G(b)$ when $\abs G$ is finite.
+
+Now we give an algorithm to determine $\ord_G(b)$ for finite group $G$.
+The algorithm is based on the following fact.
+
+If $b^r = e$, $p \mid r$, and $b^{r \over p} \neq e$, then $v_p(r) = v_p(\ord_G(b))$.
+
+When we take all prime factors of $r$, we got a predicate to decide if $r$ equals $\ord_G(b)$.
+If $b^r = e$, and $b^{r \over p} \neq e$ for all prime factors of $r$, then $r = \ord_G(b)$.
+
+Now when we got an element $r$ of $\ann_G(b)$, and the factorization of $r$,
+we can find out $\ord_G(b)$.
+
+In case when $\abs G$ is finite, $\abs G \in \ann_G(b)$.
+
+\subsection{Invariant of $\sigma_g$}
+Given group $G$, $\ord_G : G \to \mathbb Z$ is only determined by $G$.
+$\sigma_g$ also should have some invariant which is independent of $g$.
+Let $G \cong \zmod n$ without losing generality.
+Assume $\sigma_g(x) = k$, i.e. $kg \equiv x \pmod n$, or $k \equiv xg^{-1} \pmod n$
+Note that $(g, n) = 1$, therefore $(x, n) = (k, n) = (\sigma_g(x), n)$, which is
+only depent on $x$.
+
+\section{Discrete Valuation Ring}
+This section we discuess the properties of $\mathbb Z / q \mathbb Z$ as a DVR.
+The DVR studied in this seciton is not necessarily a domain.
+
+We always assuming the commutative ring has a multiplicative identity.
+A Noetherian ring is a commutative ring such that all ideals are finite generated.
+
+\subsection{Local Ring}
+A Noetherian ring is local if it has unique maximal ideal.
+The unique maximal ideal is the set of all non-unit of $R$.
+The ring $\mathbb Z / q \mathbb Z$ is a local ring, whose maximal ideal is
+$\{[a]_q \mid p \vert a\}$
+
+\subsection{Discrete Valuation Ring}
+A ring is call a discrete valuation ring(DVR) if it is local, and the maximal ideal is primary.
+The ring $\mathbb Z / q \mathbb Z$ is a DVR.
+
+Let $g$ be one generator of the unique maximal ideal.
+If DVR $R$ is a domain, every non-zero elements $a$ of $R$ can be represent by a pair of $(n, u)$ as $a = g^n u$
+where $n \in \mathbb N$, $u$ is a unit of $R$.
+The natural number $n$ is called the order of $a$, and it's independent of the choice of $g$.
+
+However $\zmod q$ is not a domain, but it has samiliar property.
+
+\section{Structure of $\zmodu{2^m}$}
+$\zmodu{2^m}$ is not a cyclic group since $2^m$ has no primitive root when $m > 2$.
+But it is almost a cyclic group, in concrete words, we have
+$$\zmodu{2^m} \cong \zmod 2 \oplus \zmod{2^{m-2}}$$
+and $5$ is of order $2^{m-2}$.
+
+Remember that the order of $5$ module $2^m$ must be a divisor of $\varphi(2^m) = 2^{m-1}$.
+We prove it equals $2^{m-2}$ by showing that $5^{2^{m-3}} \equiv 2^{m-1} + 1 \pmod{2^m}$.
+
+Assume $5^{2^{k-3}} \equiv 2^{k-1} + 1 \pmod{2^k}$, then $5^{2^{k-3}} = 2^k t + 2^{k-1} + 1$ for some integer $t$.
+Then $5^{2^{k-2}} = (2^k t + 2^{k-1} + 1)^2 = 2^{k+1}(2^{k-1}t^2 + 2^{k-1}t + 2^{k-3} + t) + 2^k + 1$,
+therefore $5^{2^{k-1}} \equiv 2^k + 1 \pmod{2^{k + 1}}$.
+
+Notice that $5$ generates the elements of $4k + 1$,
+and $-1 \equiv 2^m - 1 \pmod{2^m}$ is an element of order $2$, also of form $4k + 3$.
+
+It's not hard to prove that for every $a \in \mathbb Z$, there is a unique pair of $(l, r)$,
+$0 \leq l < 2^{m-2}$, $0 \leq r < 2$ such that $5^l(-1)^r \equiv a \pmod{2^m}$.
+
+\section{Structure of $\zmod{2^m}$}
+$\zmod{2^m}$ is also a DVR.
+
+\end{document}

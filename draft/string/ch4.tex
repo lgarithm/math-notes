@@ -1,0 +1,54 @@
+\section{Morphism}
+Let $M$ be a monoid, $\phi : M \to M$ is a morphism if $\phi(ab) = \phi(b)\phi(b)$ for all $a, b \in M$.
+If $\phi$ is a morphism, then $\phi(1_M) = 1_M$.
+A morphism $\phi : \Sigma^\ast \to \Sigma^\ast$ is completely defined by $\phi(\sigma_i)$ for each $\sigma_i \in \Sigma$.
+Let $\phi$ be a morphism, $\phi$ is $\epsilon$-free if $\phi(s) = \epsilon$ implies $s = \epsilon$, 
+that is $\phi(w) \neq \epsilon$ for all $w \in \Sigma^+$.
+For every $\{s_i\}_{i=1}^n, s_i \in \Sigma^+, (\abs{\Sigma} = n)$, 
+a $\epsilon$-free morphism is well defined by letting $\phi(\sigma_i) = s_i \, (\sigma_i \in \Sigma)$.
+
+Let $\phi$ be the morphism defined by $\{s_i\}_{i=1}^n$, 
+define $\phi^0(w) = w, \phi^n(w) = \phi(\phi^{n-1}(w))$;
+and define $\phi_i(w) = \phi(w)(i)$, the $i$-th letter of $\phi(w)$.
+Obviously $\phi_1(w) = \phi_1(w(1))$.
+
+Now we consider the convergence of $\phi^n(w) \, (w \in \Sigma^+)$.
+Since $$\phi(w) = \phi(w(1)) \dots \phi(w(\abs{w})),$$
+we only consider the convergence of $\phi^n(\sigma)$ for $\sigma \in \Sigma$.
+\begin{pro}
+Let $\phi : \Sigma \to \Sigma^+$ be a morphism, $a \in \Sigma, s \in \Sigma^+$, 
+$\phi(a) = as$, then $\phi^n(a) = a\prod_{k=0}^n \phi^k(s)$, 
+therefore $\lim_{n \to \infty} \phi^n(a)$ converges to infinite.
+\end{pro}
+
+Let $\phi$ be a morphism, then $\phi$ induce a transitive relation $R$ on $\Sigma$,
+$a R b$ if and only if $b$ is in some iteration of morphism of $a$, 
+that is $b = \phi^k(a)(i)$ for some $k \geq 1$ and $1 \leq i \leq \abs{\phi^k(a)}$.
+We say a morphism is transitive if for all $a, b \in \Sigma$, $(a, b) \in R$.
+\begin{pro}Let $\phi : \Sigma \to \Sigma^+$ be a morphism, there exist a non-empty subset $\Pi \subseteq \Sigma$, 
+such that for each $\pi \in \Pi$, $\supp \phi(\pi) \subseteq \Pi$ and for each $a, b \in \Pi$, 
+$(a, b) \in R$.
+\end{pro}
+
+\subsection{Convergence of $\abs{\phi^n(\sigma)}$}
+Define $\Pi = \{\sigma \mid \sigma R \sigma\}$, the set of 
+reflexive elements.
+
+\begin{lem}
+For and $\sigma \in \Sigma$, either $\sigma \in \Pi$ or exist 
+$\tau \in \Pi$, $\sigma R \tau$.
+\end{lem}
+
+\begin{thm}
+For $\sigma \in \Pi$, $\abs{\phi^n(\sigma)}$ converges if and only if
+$\sigma = \phi^k(\sigma)$ for some $k \geq 1$;
+for $\sigma \in \Sigma \backslash \Pi$, $\abs{\phi^n(\sigma)}$ converges if 
+and only if for all $\tau \in \Pi$, $\sigma R \tau$, $\abs{\phi^n(\tau)}$
+converges.
+\end{thm}
+
+\subsection{Convergence of $\phi^n(\sigma)$ when 
+$\abs{\phi^n(\sigma)}$ converges to finite}
+
+\subsection{Convergence of $\phi^n(\sigma)$ when
+$\abs{\phi^n(\sigma)}$ converges to infinite}

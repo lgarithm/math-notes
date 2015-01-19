@@ -1,0 +1,19 @@
+%
+% example to draw commutative diagrams
+%
+%
+\documentclass{article}
+\usepackage{diagrams}
+
+\def\hom{{\mathop{\mathrm{Hom}}}}
+% \newarrow{eqTo}{}{=}{}
+\newarrow{Corresponds}<--->
+\begin{document}
+
+\begin{diagram}
+\hom_{\mathcal C}(FY, X)               & \rCorresponds{\Phi_{Y, X}}                & \hom_{\mathcal D}(Y, GX) \\
+\dTo{\hom(Fg, f)}                     &                                           & \dTo<{\hom(g, Gf)}  \\
+\hom_{\mathcal C}(FY^\prime, X^\prime) & \rCorresponds_{\Phi_{Y^\prime, X^\prime}} & \hom_{\mathcal D}(Y^\prime, GX^\prime) \\
+\end{diagram}
+
+\end{document}

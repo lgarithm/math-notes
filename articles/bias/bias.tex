@@ -1,0 +1,135 @@
+\documentclass{article}
+\usepackage{amsmath}
+\title{Why We Should Divide by $n - 1$\\When Estimate the Variance}
+\author{Lgarithm\\ Department of Computer Science, SCU \\\mbox{lgarithm@gmail.com}}
+\date{December 23, 2011}
+
+\begin{document}
+\maketitle
+
+Let $X = \{X_i \mid i = 1, \dots, N \}$ be the population,
+then their average and variance are given by
+
+\begin{align}
+\bar X = {1 \over N}\sum_{i=1}^N X_i
+\end{align}
+\begin{align}
+\sigma^2
+ &= {1 \over N} \sum_{i=1}^N (X_i - \bar X)^2	\nonumber\\
+ &= {1 \over N} (\sum_{i=1}^N X_i - 2\bar X\sum_{i=1}^N X_i + N \bar X)	\nonumber\\
+ &= {1 \over N} \sum_{i=1}^N X_i - {1 \over N^2} \sum_{i=1}^N X_i^2	\end{align}
+
+Let $\{x_i \in X \mid i = 1, \dots, n \}$ be the samples,
+then the sample average and sample variance are give by
+
+\begin{align}
+\bar x = \sum_{i=1}^n x_i
+\end{align}
+
+\begin{align}
+S^2(x_1, \dots, x_n)
+ &= {1 \over n - 1} \sum_{i=1}^n (x_i - \bar x)^2	\nonumber\\
+ &= {n \over n - 1} {1 \over n} \sum_{i=1}^n (x_i - \bar x)^2	\nonumber\\
+ &= {1 \over n - 1} (\sum_{i=1}^n x_i^2 - {1 \over n}(\sum_{i=1}^n x_i)^2)
+\end{align}
+We shall verify that when we pick each sample indenpendently,
+the expectation of $S^2$ right equals the population variance $\sigma^2$.
+
+We write $$\sum_{x_i \in X}$$ for
+$$\sum_{x_1, \dots, x_n \in \{X_1, \dots, X_N\}}$$ from now on,
+there are $N^n$ terms in the summation.
+
+When each sample $x_i$ run through the population independently, there are $N^n$ possibilities in total,
+therefore the expectation of $S^2$ is
+\begin{align}
+\label{eq:result}
+E(S^2)
+ &= {1 \over N^n} \sum_{x_i \in X} S^2(x_1, \dots, x_n) \nonumber\\ &= {1 \over N^n} \sum_{x_i \in X}
+		{1 \over n - 1} (\sum_{i=1}^n x_i^2 - {1 \over n}(\sum_{i=1}^n x_i)^2) \nonumber\\ &= {1 \over N^n} {1 \over n - 1}
+		\sum_{x_i \in X}
+			(\sum_{i=1}^n x_i^2 - {1 \over n}(\sum_{i=1}^n x_i)^2) \nonumber\\ &= {1 \over N^n} {1 \over n - 1}
+	(\sum_{x_i \in X}
+		\sum_{i=1}^n x_i^2
+	 -
+	 {1 \over n}
+	 \sum_{x_i \in X}
+		(\sum_{i=1}^n x_i)^2
+	)
+\end{align}
+
+We can calculate
+\begin{align}
+\label{eq:first}
+\sum_{x_i \in X} \sum_{i=1}^n x_i^2
+\end{align}
+and
+\begin{align}
+\label{eq:second}
+\sum_{x_i \in X} (\sum_{i=1}^n x_i)^2
+\end{align}
+separately.
+
+
+For~\eqref{eq:first}, each $x_i^2$ is just $X_j^2$ for some $j \in \{1, \dots, N\}$,
+there are $N^n n$ terms in the summation,
+and each $X_j^2$ occurs equal times, therefore
+\begin{align}
+\sum_{x_i \in X} \sum_{i=1}^n x_i^2
+ &= {N^n n \over N} \sum_{i=1}^N X_i^2	\nonumber\\
+ &= N^{n-1} n \sum_{i=1}^N X_i^2
+\end{align}
+
+
+For~\eqref{eq:second}, we first look at the inner term
+\begin{align}
+(\sum_{i=1}^n x_i)^2 = \sum_{i=1}^n x_i^2
+	+ 2 \sum_{1\leq i < j\leq n} x_i x_j
+\end{align}
+
+Therefore~\eqref{eq:second} breaks into two parts,
+\begin{align}
+\sum_{x_i \in X} (\sum_{i=1}^n x_i)^2
+ &= \sum_{x_i \in X}
+		\sum_{i=1}^n x_i^2
+	+
+	\sum_{x_i \in X}
+		2\sum_{1\leq i < j\leq n} x_i x_j
+\end{align}
+
+We can calculate the first part as~\eqref{eq:first},
+for the second part, we should notice that $x_i$ and $x_j$
+run through $X = \{X_1, \dots, X_N\}$ indenpendently, so we obtain
+\begin{align}
+\sum_{x_i \in X} (\sum_{i=1}^n x_i)^2
+ &= N^{n-1} n \sum_{i=1}^N X_i^2
+	+
+	2 N^{n-2} {n \choose 2} (\sum_{i=1}^N X_i)^2
+\end{align}
+
+Finally take ther result of ~\eqref{eq:first} and~\eqref{eq:second} back into~\eqref{eq:result}
+\begin{align}
+E(S^2)
+ &= {1 \over N^n} {1 \over n - 1}
+	(
+		N^{n-1} n \sum_{i=1}^N X_i^2
+		-
+		N^{n-1} \sum_{i=1}^N X_i^2
+		-
+		N^{n-2} (n - 1) (\sum_{i=1}^N X_i)^2
+	) \\ &= {1 \over N^n} {1 \over n - 1}
+	(
+		N^{n-1} (n - 1) \sum_{i=1}^N X_i^2
+		-
+		N^{n-2} (n - 1) (\sum_{i=1}^N X_i)^2
+	) \\ &= {1 \over N^n}
+	(
+		N^{n-1} \sum_{i=1}^N X_i^2
+		-
+		N^{n-2} (\sum_{i=1}^N X_i)^2
+	) \\ &= {1 \over N} \sum_{i=1}^N X_i^2
+	-
+	{1 \over N^2} (\sum_{i=1}^N X_i)^2	\\ &= \sigma^2
+\end{align}
+
+That's it.
+\end{document}

@@ -1,0 +1,38 @@
+
+
+\section{Linear Functional}
+From this section we are going to invesgate the linear spaces from functional analysis.
+
+\subsection{Linear Topology Space}
+A linear topology space is a linear space with a topology such that
+$x \to \lambda x$ and $(x, y) \to x + y$ are continuous.
+
+\subsection{Banach Space}
+A metric space is a set $X$ with a distance function $d : X \times X \to \mathbb R$,
+which is
+\begin{enumerate}[1.]
+\item $d(x, y) \neq 0$
+\item $d(x, y) = d(y, x)$
+\item $d(x, y) = 0$ iif $x = y$
+\item $d(x, z) \leq d(x, y) + d(y, z)$
+\end{enumerate}
+
+A metric space is complete is every Cauchy sequence in that space converges.
+
+A norm of a linear space is a function $n : X \to \mathbb R$ such that
+\begin{enumerate}[1.]
+\item $n(x) \geq 0$
+\item $n(\lambda x) = \abs{\lambda} n(x)$
+\item $n(x + y) \leq n(x) + n(y)$
+\item $n(x) = 0$ iff $x = 0$
+\end{enumerate}
+
+If $n : X \to \mathbb R$ is a norm in $X$, 
+the function $d : X \times X \to \mathbb R$ definde by $d(x, y) = n(x - y)$ makes $X$ into a metric space.
+
+A complete normaed linear space is called a Banach space. 
+
+\subsection{Hilbert Space}
+Let $V$ be a $K$-linear space, an inner product is a bilinear form $V \times V \to K$.
+When $K = \mathbb R$, and $(x, y) \geq 0$, an inner product defines a norm on $V$,
+

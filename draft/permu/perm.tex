@@ -1,0 +1,123 @@
+\documentclass{article}
+\usepackage{amsthm}
+\newtheorem{defi}{Definition}
+\newtheorem{prop}{Proposition}
+\newtheorem{lem}{Lemma}
+\newtheorem{thm}{Theorem}
+\newtheorem{prof}{Proof}
+
+\def\supp{supp}
+
+\title{Existence of $k$-th Root of a Given Permutation}
+\author{Lgarithm\\\mbox{lgaritm@gmail.com}}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+In thie article we give the nessary and sufficient condition of
+when for a given permutation $\phi$ and an integer $k$, there exists
+a permutaion $\psi$ such that $\phi$ is the $k$-th power of $\psi$.
+\end{abstract}
+
+\section{Introduction}
+A permutation is called a regular permutation if each cycle
+in its cycle decomposition has equal length.
+Any permutation can be decomposite into product of disjoint
+regular permutations, the decomposite is maximum if the cycle length
+in each component are distinct.
+
+The main result is given by the following two theorems
+\begin{thm}
+A permutation $\phi$ is a $k$-th perfect power if and only if
+each maximum regular component of $\phi$ is a $k$-th perfect power.
+\end{thm}
+
+\begin{thm}
+A regular permutation of $t$ cycles, each of length $m$ is a perfect $k$-th power
+if and only if for each prime factor $p$ of $(m, k)$, $p^e \vert t$,
+% where $e$ is the index of $p$ in $k$.
+where $p^e \vert\vert k$.
+\end{thm}
+
+In the following sections, we explain the concepts in detail.
+
+\section{Structure of a Permutation}
+\begin{defi}
+Let $X$ be a finite set, a permutation $\phi$ on $X$ is a
+bijection map $\phi ; X \to X$.
+\end{defi}
+
+A fixed point of a permutation is an element $x \in X$ such that
+$\phi(x) = x$, and the support of $\phi$, denoted by $\supp(\phi)$
+is the set of non-trival points in $X$,
+that is $\supp(\phi) = \{x \vert \phi(x) \neq x\}$.
+Two permutations $\phi, \psi$ are disjoint if $\supp(\phi) \cap \supp(\psi) = \emptyset$.
+Disjoint permutations are commutative.
+\begin{prop}
+If $\supp(\phi) \cap \supp(\psi)$, then $\phi \psi = \psi \phi$.
+\end{prop}
+
+As an elementary conclusion, a permutation can be decomposite into disjoint cycles.
+And such decomposition is unique if regardless of order.
+% We omit the proof since it can be found in any elementary text book on algebra.
+
+The cycle decomposition of a permutation on $X$ determines a partition on $X$.
+Two elements of $X$ belong to the same partition if they belong to the same cycle.
+Therefore there is a surjection
+$$p : S_X \to \mathcal P_X$$
+Where $\mathcal P_X$ is the set of all partitions on $X$.
+Since all partitions on a set $X$ forms a partial order set $(\mathcal P_X, \prec)$,
+we say permutation $\psi$ is finer than $\phi$ if $p(\psi) \prec p(\phi)$ in $\mathcal P_X$,
+where $p(\phi)$ is the partition determined by $\phi$.
+Obviously the identity permutation is finer than any other permutations,
+and any permutation is finer than s single cycle.
+
+Let $t_i$ be the length of each cycle of $\phi$,
+we call the ordered sequence $t_{i_1}, \dots, t_{i_k}$ the shape of $\phi$.
+
+\section{Regular Permutation}
+\begin{defi}
+A permutation is called a regular permutation if each cycle
+in its cycle decomposition has equal length.
+\end{defi}
+
+\begin{lem}
+$\phi^k$ is finer than $\phi$.
+\end{lem}
+
+\begin{prof}
+Let $\phi = c_1 \cdots c_m$ be a cycle decomposition,
+then $\phi^k = c_1^k \cdots c_m^k$ since each $c_i, c_j$ are commutative.
+For a single $c_i$, of course $p(c_i^k) \prec p(c_i)$ since any permutation is
+finer than a single cycle.
+\end{prof}
+
+\begin{lem}
+For a cycle of length $n$, and prime $p$,
+$C_n^p$ splits into $p$ cycles of length $n \over p$ when $p \vert n$,
+or remains a single cycles otherwise.
+\end{lem}
+
+Let $\phi$ be a regular permutation of $k$ cycles of length $m$,
+for prime $p$, $\phi$ is the $p$-th power of some permutation $\psi$
+iif $p \dagger m$ or $p \vert m$ and $p \vert k$.
+In the former case, $\psi$ has the same shape with $\phi$,
+in the latter case, $\psi$ is consist of $k \over p$ cycles of length $mp$.
+
+\begin{lem}
+$\phi$ is a perfect $k$-th power iff each maxmium
+regular component of $\phi$ is a perfect $k$-th power.
+\end{lem}
+
+\begin{prof}
+The sufficiency if obvious, and the nessarity is as follows.
+Assume $\phi = \psi^k$,$\phi$ has maximum regular decomposition $\phi = h_1 \cdots h_m$,
+and $\psi$ has a regular(not nessaily maximum) decomposition $\psi = g_1 \cdots g_n$, 
+then $$h_1 \cdots h_m = g_1^k \cdots g_n^k$$
+Since each $g_i^k$ is regular, it must belong to one maximum regular component.
+$$\vdots$$Therefore for each $h_i$, there exists $g_{j_1}, \dots, g_{j_i}$ such that
+$$h_i = g_{j_1}^k \cdots g_{j_i}^k = (g_{j_1} \cdots g_{j_i})^k$$
+which is a perfect $k$-th power.
+\end{prof}
+
+\end{document}

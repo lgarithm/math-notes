@@ -1,0 +1,40 @@
+\paragraph{Notations}
+$[n]$ denote the set $\{1,2, \dots , n\}$.
+For a string s, $s(i)$ denote the $i$-th letter of $s$.
+
+\section{Basic Concepts}
+A string is a function $s : [n] \to \Sigma$.
+$n=\abs{s}$ is the length of $s$. A string is also called a word.
+The concatenation of $s$ and $t$, $h = st$ is a function $h : [\abs{s} + \abs{t}] \to \Sigma$,
+$$h(i) = \cases{
+s(i) 			& $1 \leq i \leq \abs{s}$\cr
+t(i - \abs{s})	& $\abs{s} < i \leq \abs{s} + \abs{t}$}.$$
+To make all strings into a monoid we define the tmpty stirng $\epsilon$, whose length is zero.
+Now we say string the empty string is included.
+
+Let $s = xyz$, then $x$ is called a prefix of $s$,
+$y$ is called a substring of $s$ and $z$ is called a 
+suffix of $s$. Since $y$ can be the empty stirng, prefix
+and suffix are substring.
+If $x$ is a prefix(/suffix/substring) of $y$, and $y$ is a
+prefix(/suffix/substring) of $z$, then $x$ is a prefix(/suffix
+/substring) of $z$.
+Therefore be a prefix(/suffix/substring) of are transitive
+relations. And obviously they are reflexive and anitsymmetric,
+thus are all partial orders on strings.
+Moreover, if $x$ and $y$ are prefixes(/suffix) of $z$,
+then either $x$ is a prefix(/suffix) of $y$ or $y$ is a 
+prefix(/suffix) of $x$. However this is not true for substrings,
+for two substrings of a given string may be imcomparable.
+And also not true when $x$ is prefix(/suffix) of $y$ and $z$,
+$y$ and $z$ may also be imcomparable.
+Therefore, the Hasse diagrams of the relation of being 
+prefix(/suffix) are trees.
+
+Let $s$ and $t$ be strings, define $lcp(s,t)$ to be the longest
+common prefix of $s$ and $t$, and define $lcf(s,t)$ to be
+the longest common suffix of $s$ and $t$. Easy to see that
+$lcp(s,t) = lcp(t,s)$, $lcf(s,t) = lcf(t,s)$. Define $lcpf(s,t)$
+to be the longest string that is a suffix of $s$ and is a 
+prefix of $t$, however $lcpf(s,t)$ do not always equal to 
+$lcpf(t,s)$.

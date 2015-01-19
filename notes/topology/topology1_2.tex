@@ -1,0 +1,75 @@
+
+\section{Point Set Topology II}
+
+\subsection{Continuous Map}
+\begin{defi}[continuous]
+A map $f : X \to Y$ is continuous if and only if $f^{-1}(V)$ is open in $X$ for
+each open set $V$ of $Y$.
+\end{defi}
+\begin{rem}
+This definition is identical to the $\epsilon-\delta$ definition on metric space.
+\end{rem}
+\begin{pro}
+$f : X \to Y, g : Y \to Z$ are continuous, then $g \circ f : X \to Z$ is continuous.
+\end{pro}
+\begin{lem}
+$A, B$ are open sets of $X$, $f : A \to Y, g : B \to Y$ are continuous, and $f(x) = g(x) \,(x \in A \cap B)$,
+then $h : A \cup B, h(x) = \cases{f(x)\,(x \in A) \cr g(x)\,(x \in B)}$ is continuous.
+\end{lem}
+
+\begin{defi}[open/close map]
+A map $f : X \to Y$ is open/close if $f(U)$ is open/close in $Y$ for every
+open/close set $U$ of $X$.
+\end{defi}
+
+\subsection{Homeomorphism and Embedding}
+\begin{defi}
+Let $(X, \mathcal{T}), (Y, \mathcal{S})$ be topologies spaces,
+$f : X \to Y$ is bijection, and $f, f^{-1}$ both continuous,
+then call $f$ a homeomorphism.
+\end{defi}
+
+
+\subsection{Separate Axioms}
+\begin{defi}[$T_0$]
+A topology space $(X, \mathcal{T})$ is $T_0$ if for any two distinct point $x$ and $y$ of $X$,
+there exist open set $U$ such that either $x \in U$ and $y \not in U$ or $x \notin U$
+and $y \in U$.
+\end{defi}
+\begin{rem}
+A space that is not $T_0$ can be made into $T_0$ by form the quotient space of
+gluting non-distinguishable points.
+A space is $T_0$ if and only if it can be induced by some partial order.
+\end{rem}
+\begin{defi}[$T_1$]
+A topology space $(X, \mathcal{T})$ is $T_1$ if for any two distinct point $x$ and $y$ of $X$,
+there exist open set $U$ such that $x \in U$ and $y \not in U$.
+\end{defi}
+\begin{rem}
+A topology space $(X, \mathcal{T})$ is $T_1$ if every singleton set is close.
+\end{rem}
+\begin{defi}[$T_2$, Hausdorff]
+A topology space $(X, \mathcal{T})$ is $T_2$ if for any two distinct point $x$ and $y$ of $X$,
+there exist disjoint open sets $U$ and $V$ such that $x \in U$ and $y \in V$.
+\end{defi}
+\begin{defi}[Regular]
+A topology space $(X, \mathcal{T})$ is regular if for any $x \in X$ and open set $A$,
+there exist disjoint open sets $U$ and $V$ such that $x \in U$ and $A \subseteq V$.
+\end{defi}
+\begin{defi}[$T_3$]
+A topology space $(X, \mathcal{T})$ is $T_3$ if $X$ is regular and $T_0$.
+\end{defi}
+\begin{defi}[normal]
+A topology space $(X, \mathcal{T})$ is normal if for any open sets $A$ and $B$,
+there exist disjoint open sets $U$ and $V$ such that $A \subseteq U$ and $B \subseteq V$.
+\end{defi}
+\begin{defi}[$T_4$]
+A topology space $(X, \mathcal{T})$ is $T_4$ if $X$ is normal and $T_1$.
+\end{defi}
+\subsection{Normal Space}
+\begin{pro}
+\end{pro}
+
+\subsection{Countable Axioms}
+\subsection{Compact Space}
+\subsection{Connected Space}

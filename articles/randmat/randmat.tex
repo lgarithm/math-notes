@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\begin{document}
+
+Let $E_r$ be the $r \times r$ matrix whose all entries are 1's, 
+and $I_r$ be the $r \times r$ identity matrix. 
+Compute $({E_r - I_r \over r - 1})^n$ when $n \to \infty$.
+
+\begin{align*}
+({E_r - I_r \over r - 1})^n 
+&= {1 \over (r - 1)^n} \sum_{k=0}^n {n \choose k} E_r^{n - k} I_n^k (-1)^k
+\end{align*}
+
+Notice that $E_r^k = r^{k - 1} E_r$ when $k > 0$
+and $E_r^0 = I_n$.
+
+Therefore
+
+\begin{align*}
+{1 \over (r - 1)^n} \sum_{k=0}^n {n \choose k} E_r^{n - k} I_r^k (-1)^k
+&= {1 \over (r - 1)^n} 
+	\left(I_r^n(-1)^n 
+		+ E_r \sum_{k=0}^{n - 1} {n \choose k} r^{n - k - 1} (-1)^k
+	\right) \\
+&= {1 \over (r - 1)^n}
+	\left((-1)^n I_n + {(r - 1)^n - (-1)^n \over r}E_r
+	\right) \\
+&= {(-1)^n \over (r - 1)^n} I_n + 
+	\left({1 \over r} - {(-1)^n \over (r - 1)^n r}
+	\right) E_r
+\end{align*}
+
+When $n \to \infty$, 
+\begin{align*}
+{(-1)^n \over (r - 1)^n} I_n + 
+	\left({1 \over r} - {(-1)^n \over (r - 1)^n r}
+	\right) E_r
+&= {1 \over r} E_r
+\end{align*}
+\end{document}

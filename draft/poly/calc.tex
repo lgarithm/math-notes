@@ -1,0 +1,147 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+
+\section{Variety}
+\subsection{A Simple Calculation}
+Let's start with a simple and concrete example. 
+Consider the curve $x^2 + 2y^2 = 6$ and $p(2, 1)$ on it, 
+as we know from elementary math, the target line at $p$
+is $x + y - 3 = 0$.
+From modern point of view, it says that the ideal generated
+by $f = x^2 + 2y^2 - 6$ and $g = x + y - 3$ has exactly only one zero $(2, 1)$.
+According to Hilbert's nullstellensatz, 
+$$\sqrt{(f, g)} = (x - 2, y - 1)$$
+Now let's verify this identity.
+Since $f, g \in (x - 2, y - 1)$ is obvious, 
+we only need to show there exists $m, n$ such that
+$(x - 2)^m, (y - 1)^n \in (f, g)$.
+Write $f, g$ in terms of $x^\prime = x - 2$ and $y^\prime = y - 1$
+\begin{align*}
+f = & (x - 2)^2 + 4(x - 2) + 2(y-1)^2 + 4(y - 1) & = {x^\prime}^2 + 4x^\prime + 2{y^\prime}^2 + 4y^\prime \\
+g = & (x - 2) + (y - 1)                          & = x^\prime + y^\prime
+\end{align*}
+then 
+$$f - 4g - ((x - 2) - (y - 1)) g = 3(y - 1)^2$$
+$$f - 4g + 2((x - 2) - (y - 1)) g = 3(x - 2)^2$$
+
+\subsection{Generic Quadratic Curve}
+Now let's consider the generic quadratic curve
+$$F = ax^2 + 2bxy + cy^2 + 2dx + 2ey + f$$
+and the target line at $(x_0, y_0)$
+$$G = ax_0x + b(x_0y + y_0x) + cy_0y + d(x + x_0) + e(y + y_0) + f$$
+where
+$$F(x_0, y_0) = G(x_0, y_0) = 0$$
+Analogy to the simple case, we write $F, G$ in terms of $x^\prime = x - x_0$ and $y^\prime = y - y_0$
+\begin{align*}
+G &= ax_0(x - x_0 + x_0) + b(x_0(y - y_0 + y_0) + y_0(x - x_0 + x_0)) + cy_0(y - y_0 + y_0) \\
+  &+ d(x - x_0 + 2x_0) + e(y - y_0 + 2y_0) + f \\
+  &= ax_0(x - x_0) + b(x_0(y - y_0) + y_0(x - x_0)) + cy_0(y-y_0) + d(x - x_0) + e(y - y_0) \\
+  &+ ax_0^2 + 2bx_0y_0 + cy_0^2 + 2dx_0 + 2ey_0 + f \\
+  &= ax_0(x - x_0) + b(x_0(y - y_0) + y_0(x - x_0)) + cy_0(y-y_0) + d(x - x_0) + e(y - y_0) + G(x_0, y_0) \\
+  &= ax_0(x - x_0) + b(x_0(y - y_0) + y_0(x - x_0)) + cy_0(y-y_0) + d(x - x_0) + e(y - y_0) \\
+  &= ax_0x^\prime + b(x_0y^\prime + y_0x^\prime) + cy_0y^\prime + dx^\prime + ey^\prime \\
+  &= (ax_0 + by_0 + d) x^\prime + (cy_0 + bx_0 + e) y^\prime
+\end{align*}
+
+\begin{align*}
+F &= a(x - x_0 + x_0)^2 + 2b(x - x_0 + x_0)(y - y_0 + y_0) + c(y - y_0 + y_0)^2 \\
+  &+ 2d(x - x_0 + x_0) + 2e(y - y_0 + y_0) + f \\
+  &= a(x - x_0)^2 + 2ax_0(x - x_0) + ax_0^2 \\
+  &+ 2b((x - x_0)(y - y_0) + x_0(y - y_0) + y_0(x - x_0) + x_0y_0) \\
+  &+ c(y - y_0)^2 + 2cy_0(y - y_0) + cy_0^2 \\
+  &+ 2d(x - x_0) + 2dx_0 + 2e(y - y_0) + 2ey_0 + f \\
+  &= a{x^\prime}^2 + 2ax_0x^\prime + ax_0^2 
+     + 2b(x^\prime y^\prime + x_0x^\prime + y_0y^\prime + x_0y_0) 
+     + c{y^\prime}^2 + 2cy_0y^\prime + cy_0^2 \\
+  &+ 2dx^\prime + 2dx_0 + 2ey^\prime + 2ey_0 + f \\
+  &= ax^{\prime 2} + 2b x^\prime y^\prime + cy^{\prime 2} \\
+  &+ 2ax_0x^\prime + 2b(x_0y^\prime + y_0x^\prime)+ 2cy_0y^\prime + 2dx^\prime + 2ey^\prime \\
+  &+ ax_0^2 + 2bx_0y_0 + cy_0^2 + 2dx_0 + 2ey_0 + f \\
+  &= a{x^\prime}^2 + 2b x^\prime y^\prime + c{y^\prime}^2 + 2G(x, y) + F(x_0, y_0)
+\end{align*}
+Therefore
+$$H = a{x^\prime}^2 + 2b x^\prime y^\prime + c{y^\prime}^2 = F - 2G \in (F, G)$$
+Let $G = px^\prime + qy^\prime$, where $p = ax_0 + by_0 + d$, $q = cy_0 + bx_0 + e$.
+
+\begin{align*}
+q^2H &= aq^2{x^\prime}^2 + 2bq x^\prime (qy^\prime) + c(qy^\prime)^2 \\
+     &= aq^2{x^\prime}^2 + 2bq x^\prime (G - px^\prime) + c(G - px^\prime)^2 \\
+     &= (aq^2 - 2bpq + cp^2) {x^\prime}^2 + cG^2 - 2cpx^\prime G + 2bqx^\prime G \\
+     &= \Delta {x^\prime}^2 + cG^2 - 2cpx^\prime G + 2bqx^\prime G \\
+p^2H &= a(px^\prime)^2 + 2bp (px^\prime)y^\prime + cp^2{y^\prime}^2 \\
+     &= a(G-qy^\prime)^2 + 2bp(G - qy^\prime)y^\prime + cp^2{y^\prime}^2 \\
+     &= (aq^2 - 2bpq + cp^2) {y^\prime}^2 + aG^2 - 2aqy^\prime G + 2bpy^\prime G \\
+     &= \Delta {y^\prime}^2 + aG^2 - 2aqy^\prime G + 2bpy^\prime G
+\end{align*}
+Where $\Delta = aq^2 - 2bpq + cp^2$
+Now we have shown that 
+$$\Delta {x^\prime}^2, \Delta {y^\prime}^2 \in (F, G)$$
+If $\Delta \neq 0$, it is clear that $x^\prime, y^\prime \in \sqrt{(F, G)}$
+
+Let's look into the $\Delta$. 
+\begin{align*}
+\Delta &= aq^2 - 2bpq + cp^2 \\
+       &= a(cy_0 + bx_0 + e)^2 - 2b(ax_0 + by_0 + d)(cy_0 + bx_0 + e) + c(ax_0 + by_0 + d)^2
+\end{align*}
+To expand the expression, let's consider $\Delta$ as polynomial of $x_0, y_0$,
+then each coefficients are
+\begin{align*}
+  x_0^2 &: ab^2 - 2b ab + ca^2 &= ca^2 - ab^2 &= a(ac - b^2)\\
+  y_0^2 &: ac^2 - 2b bc + cb^2 &= ac^2 - cb^2 &= c(ac - b^2)\\
+  x_0y_0 &: 2a cb - 2b (ac + b^2) + 2c ab &= 2abc - 2b^3 &= 2b(ac - b^2)\\
+  x_0 &: 2a be - 2b(ae + bd) + 2c ad &= 2acd - 2b^2d &= 2d(ac - b^2) \\
+  y_0 &: 2a ce - 2b(be + cd) + 2c bd &= 2ace - 2b^2e &= 2e(ac - b^2) \\
+  1 &: ae^2 - 2bde + cd^2
+\end{align*}
+Therefore, 
+\begin{align*}
+\Delta &= (ac - b^2)(ax_0^2 + 2bx_0y_0 + cy_0^2 + 2dx_0 + 2ey_0) + (ae^2 - 2bde + cd^2) \\
+       &= -f(ac - b^2) + (ae^2 - 2bde + cd^2) \\
+       &= ae^2 + b^2f + cd^2 - 2bde - acf
+\end{align*}
+
+\section{Invariant}
+Consider the homogeneous polynomial in two variables,
+which is also called a binary form, 
+that is a homogeneous element in the ring $k[x, y]$.
+
+Let $n$ be the degree, then a binary form has the base form 
+$$f(x, y) = \sum a_i x^{n-i} y^i = a_0 x^n + a_1 x^{n-1} y + \cdots + a_n y^n$$
+When the coefficients $a_i$ ranges in $k$ independently, 
+they form a linear space of dimension $d = {n + 2 - 1\choose 2 - 1} = n + 1$ 
+with basis $x^{n-i}y^i$, $i = 0, \dots, n$.
+
+Since the coefficients $a_i$ determines a form, a function which takes 
+the $a_i$ as variables may be regarded a characteristic of the form.
+We denote this function by $\mathcal I(a_0, \dots, a_n)$ and only 
+intrested in the case when $\mathcal I$ is also a form.
+Now consider the group $GL_2(k)$ acts on forms. 
+$$x^\prime = px + qy$$
+$$y^\prime = rx + sy$$
+with determinant $\delta = ps - qr$.
+If we interpret a binary form as a geometric object, 
+its character should not depent on the choose of coordinate, 
+therefore we should require that 
+$$\mathcal I(a_0, \dots, a_n) = \delta^\omega \mathcal I(a_0^\prime, \dots, a_n^\prime)$$
+
+
+When $n = 0$, a form is just a constant, that is $a_0 \in k$.
+
+When $n = 1$, a form is a linear combination of $x$ and $y$, 
+the basic form is $$a x + b y$$
+the transformed form becomes 
+$$a (px + qy) + b (rx + sy) = (ap + br) x + (aq + bs) y = a^\prime x + b^\prime y$$
+% consider the form in $a, b$
+% $$a^2 + b^2$$
+% which determines the distance of the origin form the line represented by the linear form, 
+% and after transformation 
+% $$(ap + br)^2 + (aq + bs)^2 = $$
+
+When $n = 2$, the base form is
+$$a x^2 + bxy + cy^2$$
+consider the form in $a, b, c$
+$$b^2 - ac$$
+
+\end{document}

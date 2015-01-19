@@ -1,0 +1,125 @@
+\section{Elementary Theory}
+Before enter the abstract concepts of linear algebra,
+we first give some concrete examples on the objects of linear algebra,
+the vectors and the matrices.
+
+The definitions given in this section are totally constructive.
+
+\subsection{Vector}
+A vector of length $n$ is an array of $n$ numbers $v = (a_1, \dots, a_n)$,
+where $a_i$ is called the $i$-th component of $v$.
+Two vectors of the same length can be added, component by component:
+$$(a_1, \dots, a_n) + (b_1, \dots, b_n) = (a_1 + b_1, \dots, a_n + b_n)$$
+A vector can be multipled by a number,
+$$\lambda(a_1, \dots, a_n) = (\lambda a_1, \dots, \lambda a_n)$$
+result in a new vector with each component multiplied by that number.
+
+For two vectors $u = (a_1,\dots, a_n)$ and $v = (b_1,\dots, b_n)$ of the same length,
+we define the inner product of them as a single number $\sum_{i=1}^n a_ib_i$.
+
+\subsection{Matrix}
+An $m$-by-$n$ matrix is $mn$ numbers arranged as $m$ rows and $n$ colomns:
+$$\left(\begin{matrix}
+a_{11} & a_{12} & \cdots & a_{1n} \cr
+a_{21} & a_{22} & \cdots & a_{2n} \cr
+\vdots & \vdots & \ddots & \vdots \cr
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{matrix}\right)$$
+For two matrix of the same scale, we can define their sum as termwise sum
+$$\left(\begin{matrix}
+a_{11} & a_{12} & \cdots & a_{1n} \cr
+a_{21} & a_{22} & \cdots & a_{2n} \cr
+\vdots & \vdots & \ddots & \vdots \cr
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{matrix}\right) +
+\left(\begin{matrix}
+b_{11} & b_{12} & \cdots & b_{1n} \cr
+b_{21} & b_{22} & \cdots & b_{2n} \cr
+\vdots & \vdots & \ddots & \vdots \cr
+b_{m1} & b_{m2} & \cdots & b_{mn}
+\end{matrix}\right)$$
+$$=\left(\begin{matrix}
+a_{11} + b_{11} & a_{12} + b_{12} & \cdots & a_{1n} + b_{1n} \cr
+a_{21} + b_{21} & a_{22} + b_{22} & \cdots & a_{2n} + b_{2n} \cr
+\vdots & \vdots & \ddots & \vdots \cr
+a_{m1} + b_{m1} & a_{m2} + b_{m2} & \cdots & a_{mn} + b_{mn}
+\end{matrix}\right)
+$$
+For a $k$-by-$m$ matrix $A = (a_{ij})$ and an $m$-by-$n$ matrix $B = (b_{ij})$,
+we can define their product $AB$ as a $k$-by-$n$ matrix $C = (c_{ij})$,
+$$c_{ij} = \sum_{k=1}^m a_{ik}b_{kj}$$
+One can check by definition $$A(BC) = (AB)C$$
+and $$A(B + C) = AB + AC \quad (A + B)C = AB + BC$$
+if their scale are proper to be added and multiplied.
+
+If $A = (a_{ij})$ is an $m$-by-$n$ matrix,
+we define the transpose of $A$ as a $n$-b-$m$ matrix,
+$A^\prime = (a^\prime_{ij})$, where $a^\prime_{ij} = a_{ji}$.
+
+\subsection{Square Matrix}
+Now we consider $n$-by-$n$ matrix. If the terms of the matrix are taken from $K$,
+we will denoted the set of all such matrix by $M_n(K)$. Usually $K$ will be a field,
+or a ring. Most frequently, $\mathbb{R}$ or $\mathbb{C}$.
+From early observations we notice that $M_n(K)$ form a non-commutative ring,
+the $0$ and $1$ in this ring are the zero matrix
+$$O = \left(\begin{matrix}
+0 & 0 & \cdots & 0 \cr
+0 & 0 & \cdots & 0 \cr
+\vdots & \vdots & \ddots & \vdots \cr
+0 & 0 & \cdots & 0 \cr
+\end{matrix}\right)$$
+and the identity matrix
+$$I = \left(\begin{matrix}
+1 & 0 & \cdots & 0 \cr
+0 & 1 & \cdots & 0 \cr
+\vdots & \vdots & \ddots & \vdots \cr
+0 & 0 & \cdots & 1
+\end{matrix}\right)$$
+
+A square matrix $U$ is invertible, if exists $V$ such that $UV = VU = I$.
+Such $V$ is called the inverse of $U$, later we will see it's unique if exists.
+
+\subsection{Determinant}
+For a $n$-by-$n$ square matrix $A = (a_{ij})$, we define its determinant as a number
+$$\det A = \sum_{\pi \in S_n} a_{1\pi(1)} a_{2\pi(2)} \cdots a_{n\pi(n)}$$
+Obviously observed from definition $\det A = \det A^\prime$.
+
+The $(i, j)$ minor of $A$, denoted by $M_{ij}$ is the determinant of the square matrix
+obtained by deleting $i$-th row and $j$-th column of $M$.
+The $(i, j)$ algebraic cofactor of $A$ is $A_{ij} = (-1)^{i + j} M_{ij}$.
+The adjoint matrix of $A$, denoted by $A^\ast$ is a matrix whose $j$-th element on $i$-throw, $a^\ast_{ij}$ is $A_{ji}$.
+
+\begin{pro}
+$$\sum_{j=1}^n a_{ij} A_{ij} = \sum_{i=1}^n a_{ij} A_{ij} = \det A$$
+$$\sum_{i=1}^n a_{ij} A_{ik} = \sum_{i=1}^n a_{ji} A_{ki} = 0 \, (j \neq k)$$
+\end{pro}
+
+\begin{cly}
+$$A A^\ast = A^\ast A = (\det A) I$$
+\end{cly}
+
+\begin{pro}
+$\det (AB) = (\det A)(\det B).$
+\end{pro}
+
+\begin{pro}
+$M$ is invertible if and only if $\det M \neq 0$,
+the inverse is ${1 \over \det M} M^\ast$.
+\end{pro}
+
+\subsection{Trace}
+For $A = (a_{ij})\in M_n(K)$, we define its trace by $\tr A = \sum_{i=1}^n a_{ii}$.
+
+\begin{pro}
+If $\det U \neq 0$, then $\tr A = \tr (UAU^{-1})$.
+\end{pro}
+
+\begin{prf}
+Let $A = (a_{ij}), U = (u_{ij}), U^{-1} = (v_{ij})$, then
+\begin{align*}
+\tr (UAU^{-1}) & = \sum_{i=1}^n \sum_{j=1}^n \sum_{k=1}^n u_{ij} a_{jk} v_{ki} \\
+& = \sum_{j=1}^n \sum_{k=1}^n a_{jk} \sum_{i=1}^n v_{ki} u_{ij} \\
+& = \sum_{j=1}^n \sum_{k=1}^n a_{jk} \delta_{kj} \\
+& = \tr A
+\end{align*}
+\end{prf}

@@ -1,0 +1,86 @@
+\section{Linear Space}
+We already studied vector and matrix, which are concrete objects,
+from this section, we will talk about the abstract concept of linear space.
+
+Let $K$ be a field.
+\begin{defi}
+A $K$-linear space is an abelian group $(L, +)$
+with a operation $K \times L \to L, (k, l) \to kl$,
+such that
+\begin{enumerate}[i).]
+\item $k(l_1 + l_2) = l_1 + l_2$;
+\item $(k_1 + k_2)l = k_1 l + k_2 l$;
+\item $(k_1 k_2)l = k_1(k_2l)$;
+\item $1_K l = l$.
+\end{enumerate}
+\end{defi}
+One can infer from definition $0_k l = 0$, $k 0 = 0$.
+\begin{exmp}
+$K^n = \{(x_1, \dots, x_n) \mid x_i \in K\}$ is a $k$-linear space.
+$$(x_1, \dots, x_n) + (y_1, \dots, y_n) \to (x_1 + y_1, \dots, x_n + y_n),$$
+$$k(x_1, \dots, x_n) \to (kx_1, \dots, kx_n).$$
+\end{exmp}
+\begin{exmp}
+Let $X$ be a set, $K^X = \{f \mid f : X \to K\}$ is a $k$-linear space.
+$$f + g : X \to K, \quad (f + g)(x) = f(x) + g(x),$$
+$$kf : X \to K, \quad (kf)(x) = kf(x).$$
+\end{exmp}
+$K^X$ is call the function space. When $X$ is a finite set, $K^X$ can be identical to $K^{\abs{X}}$.
+In real analysis, we are intrested in some subspaces of $\mathbb{R}^\mathbb{R}$.
+
+\subsection{Subspace}
+\begin{defi}
+Let $L, M$ be $k$-linear spaces, $M \subseteq L$, then $M$ is call a subspace of $L$.
+\end{defi}
+Let $u_1, \dots, u_r \in L$, define
+$$\sp(u_1, \dots, u_r) = \{k_1u_1 + \dots k_ru_r \mid k_i \in K\}.$$
+Let $M, N$ be subspaces of $L$, define the inner direct sum
+$$M + N = \{m+n \mid m \in M, n \in N\}.$$
+Then $\sp(u_1, \dots, u_r)$ and $M + N$ are subspaces of $L$.
+$$\sp(u_1, \dots, u_r) = \sp(u_1) + \dots + \sp(u_r).$$
+
+\subsection{Direct Sum}
+Let $M, N$ be $k$-linear space, define $M \oplus N = \{(m, n) \mid m\in M, n\in N\}$,
+which is also a $k$-linear space, call the direct sum of $M$ and $N$.
+
+If $M$ and $N$ are subspace of $L$, them $M\oplus N$ is isomorphic to $M + N$ if
+and only if $M\cap N = \{0_L\}$.
+
+\subsection{Quotient Space}
+\begin{defi}
+Let $M$ be a subspace of $L$, $L / M$ is a $k$-linear space,
+called the quotient space of $L$ module $M$.
+\end{defi}
+
+\begin{exmp}
+Let $L = M\oplus N$, then $L / M \cong N$.
+\end{exmp}
+
+\subsection{Finite Dimensional Space}
+If exist $e_1, \dots, e_n \in L$, such that $L = \sp(e_1, \dots, e_n)$,
+and for any $i, j$, $e_i \not\in \sp(e_j)$, then we call $\{e_1, \dots, e_n\}$ a basis of $L$,
+and $n$ the dimension of $L$, which can be proved indepent of the choice of basis.
+We do not prove it here.
+If such a basis exist, we say $L$ is a finite dimensional space of dimension $n$, denoted $n = \dim L$.
+
+Let $L$ be a finite dimensional space, $n = \dim L$, $\{e_1, \dots, e_n\}$ a basis of $L$.
+for each $a \in L$, there are $k_1, \dots, k_n \in K$ such that $a = k_1e_1 + \dots + k_ne_n$.
+We call $(k_1, \dots, k_n) \in K^n$ the coordinate of $a$ with respect to the
+basis\footnote{The basis is ordered.} $\{e_1, \dots, e_n\}$.
+Given a basis, the coordinate of any element of $L$ is unique.
+
+For a finite space of dimension $n$, one can choose a basis $\{e_1, \dots, e_n\}$,
+therefore the map $a \to (k_1, \dots, k_n)$ from a element of $L$ to its coordinate
+is bijection, so any $n$-dimensional space is isomorphic to $K^n$.
+
+Now we have established the connection between the vectors and the linear space.
+A vector is just a coordinate of an element of a linear space, with respect to a given basis.
+
+\subsection{Dual Space}
+Let $V$ be a $K$-linear space, a function $f : V \to K$ is a linear function if
+$f(k_1 v_1 + k_2 v_2) = k_1 f(e_1) + k_2 f(v_2)$ for any $k_1, k_2 \in K$ and $v_1, v_2 \in V$.
+For $k \in K$, we can define $kf : V \to K$ by $(kf)(v) = k f(v)$,
+and $f_1 + f_2 : V \to K$ by $(f_1 + f_2)(v) = f_1(v) + f_2(v)$.
+One can check all linear functions form a $K$-linear space,
+we call it the dual space of $V$, denoted by $V^\ast$.
+If $V$ is finite dimensional space, $\dim V^\ast = \dim V$.
