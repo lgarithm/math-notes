@@ -15,6 +15,18 @@
 \section{Arithmetic Function}
 An arithmetic function is a function defined on the positive integers.
 
+\subsection{Additive Function}
+An arithmetic function $f$ is additive if $f(mn) = f(m)f(n)$ for $(m, n) = 1$.
+
+\subsubsection*{Omega Functions}
+For integer $n$, $\omega(n)$ counts the number of distinct prime factors of $n$,
+$\Omega(n)$ countts the number of prime factors of $n$ with multiplicity.
+$\omega(n) = \Omega(n)$ when $n$ is square free.
+
+$\Omega(mn) = \Omega(m) + \Omega(n)$ for any positive integers $m$ and $n$.
+This kind of additive function is called complete additive function.
+
+
 \subsection{Multiplicative Function}
 An arithmetic function $f$ is multiplicative if $f(mn) = f(m)f(n)$ for $(m, n) = 1$.
 If has decomposition $n = \prod_i^k p_i^{e_i}$
@@ -38,24 +50,31 @@ become special cases.
 \sigma_k(n) &= \prod_{p^e \vert\vert n} {p^{k(e + 1)} - 1 \over p^k - 1} \, (k \neq 0)
 \end{align*}
 
-\subsubsection*{M\"obius Function}
-For power of prime number $p^e$ we define
-\begin{equation*}
-\mu(p^e) =
-\begin{cases}
-  1 \; (e = 1) \\
-  0 \; (e > 1)
-\end{cases}
-\end{equation*}
-$\mu$ extends to a multiplicative function naturally, where $\mu(n) = 0$ if and only if $n$
-is a multiple of prime square, $\mu(n)$ counts the parity of the number of distinct prime
-factors of $n$ when $n$ is square free.
-
 \subsubsection*{Euler's Totient Function}
 Euler's totient function $\varphi(n)$ counts the numebr of positive integers less or equal than
 $n$ and relative prime to $n$.
 $$\varphi(n) = n \prod_{p \vert n} (1 - {1 \over p})$$
 
+
+\subsubsection*{M\"obius Function}
+For power of prime number $p^e$ we define
+\begin{equation*}
+\mu(p^e) =
+\begin{cases}
+  -1 & \quad (e = 1) \\
+  0  & \quad (e > 1)
+\end{cases}
+\end{equation*}
+$\mu$ extends to a multiplicative function naturally, where $\mu(n) = 0$ if and only if $n$
+is a multiple of prime square, $\mu(n)$ counts the parity of the number of distinct prime
+factors of $n$ when $n$ is square free.
+\begin{equation*}
+\mu(n) =
+\begin{cases}
+  (-1)^{\omega(n)} = (-1)^{\Omega(n)} \quad & (\omega(n) = \Omega(n)) \\
+  0 & (\omega(n) < \Omega(n))
+\end{cases}
+\end{equation*}
 
 \subsection{Ring of Arithmetic Functions}
 \subsubsection*{Dirichlet Convolution}
