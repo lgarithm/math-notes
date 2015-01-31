@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{amsmath}
+\title{Elementary Number Theory}
+
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+\section{Divisiblity}
+
+\section{Modular Arithmetic}
+
+\section{Arithmetic Function}
+An arithmetic function is a function defined on the positive integers.
+
+\subsection{Multiplicative Function}
+An arithmetic function $f$ is multiplicative if $f(mn) = f(m)f(n)$ for $(m, n) = 1$.
+If has decomposition $n = \prod_i^k p_i^{e_i}$
+$$f(n) = \prod_i^k f(p_i^{e_i})$$
+
+\subsubsection*{Divisor Function}
+The divisor function $d(n)$ counts the number of positive divisors of $n$.
+$$d(n) = \prod_{p_i^{e_i} \vert\vert n} (1 + e_i)$$
+
+\subsubsection*{Divisor Sum Function}
+The divisor sum function $\sigma(n)$ is the sum of all positive divisors of $n$.
+\begin{equation*}
+\sigma(n) = \prod_{{p^e} \vert\vert n} (1 + p + \cdots + p^e)
+= \prod_{p_i^{e_i} \vert\vert n} {p^{e + 1} - 1 \over p - 1}
+\end{equation*}
+In general, we can define $\sigma_k(n)$ to be the sum of $k$-th exponent of all
+positive divisors of $n$ then $d(n) = \sigma_0(n)$ and $\sigma(n) = \sigma_1(n)$
+become special cases.
+\begin{align*}
+\sigma_k(n) &= \prod_{p^e \vert\vert n} (1 + p^k + \cdots + p^{ke}) \\
+\sigma_k(n) &= \prod_{p^e \vert\vert n} {p^{k(e + 1)} - 1 \over p^k - 1} \, (k \neq 0)
+\end{align*}
+
+\subsubsection*{M\"obius Function}
+For power of prime number $p^e$ we define
+\begin{equation*}
+\mu(p^e) =
+\begin{cases}
+  1 \; (e = 1) \\
+  0 \; (e > 1)
+\end{cases}
+\end{equation*}
+$\mu$ extends to a multiplicative function naturally, where $\mu(n) = 0$ if and only if $n$
+is a multiple of prime square, $\mu(n)$ counts the parity of the number of distinct prime
+factors of $n$ when $n$ is square free.
+
+\subsubsection*{Euler's Totient Function}
+Euler's totient function $\varphi(n)$ counts the numebr of positive integers less or equal than
+$n$ and relative prime to $n$.
+$$\varphi(n) = n \prod_{p \vert n} (1 - {1 \over p})$$
+
+
+\subsection{Ring of Arithmetic Functions}
+\subsubsection*{Dirichlet Convolution}
+For two arithmetic functions $f$ and $g$, their Dirichlet convolution is another arithmetic function
+define by $$h(n) = \sum_{d \vert n} f(d) g({n \over d})$$
+
+\subsubsection*{M\"obius Transform}
+For an arithmetic function $f(n)$, it's M\"obius transform is another arithmetic function
+defined by $$g(n) = \sum_{d \vert n} f(d)$$
+
+\end{document}
