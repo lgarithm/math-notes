@@ -297,10 +297,10 @@ of the first $n$ positive integers.
 In general, $S_k(n)$ is a $(k + 1)$-th polynomial of $n$.
 
 
-\section{Derivate}
-For polynomials, the derivate can be defined without limit.
+\section{Derivative}
+For polynomials, the derivative can be defined without limit.
 
-\subsection{Partial Derivate}
+\subsection{Partial Derivative}
 For $f(X_1, \dots, X_n) \in R[X_1, \dots, X_n]$, we define $n$ linear operators
 $$\partial_i = {\partial \over \partial X_i} : R[X_1, \dots, X_n] \to R[X_1, \dots, X_n]$$
 $$\partial_i(X_1^{e_1} \cdots X_n^{e_n}) = e_i X_1^{e_1} \cdots X_i^{e_i-1} \cdots X_n^{e_n}$$
@@ -313,7 +313,7 @@ For $d \in R^k[\partial_1, \dots, \partial_n]$ and $f \in R^m[X_1, \dots, X_n]$,
 $$d(f) \in R^{m-k}[X_1, \dots, X_n]$$
 when $k > m$, $d(f) = 0$.
 
-For linear derivate operators, we have
+For linear derivative operators, we have
 \begin{thm}
 For $d \in R^1[\partial_1, \dots, \partial_n]$,
 \begin{enumerate}
@@ -328,11 +328,11 @@ and $d \in R^1[\partial_1, \dots, \partial_m]$,
 $$d(\varphi(f)) = \sum_{k=1}^n \varphi(\partial_k(f)) d(\varphi(X_k))$$
 \end{thm}
 
-If we extend the coefficient ring of derivate operators to $R[X_1, \dots, X_n]$,
-then our ring of derivate operators becomes $R[X_1, \dots, X_n, \partial_1, \dots, \partial_n]$.
+If we extend the coefficient ring of derivative operators to $R[X_1, \dots, X_n]$,
+then our ring of derivative operators becomes $R[X_1, \dots, X_n, \partial_1, \dots, \partial_n]$.
 However we should be very careful that $x_i$ and $\partial_i$ is not commutative.
 In fact they satisifies the relation $\partial_i X_i - X_i \partial_i = 1$.
-Here $\partial_i X_i$ means multiply by $X_i$ first, then take partial derivate at $X_i$.
+Here $\partial_i X_i$ means multiply by $X_i$ first, then take partial derivative at $X_i$.
 It is known as the Weyl algebra.
 
 \begin{thm}[Euler]
