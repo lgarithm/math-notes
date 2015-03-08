@@ -218,8 +218,7 @@ $X$ in $\mathcal{C}$, and morphisms $f: X \to A$, $g: X \to B$,
 exists unique morphism $\theta : X \to C$,
 $f = p \circ \theta$, $g = q \circ \theta$.
 \end{define}
-The product can be expressed by the following comutative diagram,
-$p$ and $q$ are called projection maps.
+The product can be expressed by the following comutative diagram
 \begin{diagram}
     &          & C            &          & \\
     & \ldTo{p} & \uTo{\theta} & \rdTo{q} & \\
@@ -236,17 +235,19 @@ object $X$ in $\mathcal D$, and morphisms $f: A \to X$,
 $g: B \to X$, exists unique morphism $\theta : D \to X$,
 $f = \theta \circ \alpha$, $g = \theta \circ \beta$.
 \end{define}
-The coproduct can be expressed by the following commutative diagram,
-$\alpha$ and $\beta$ are called inclusion maps.
+The coproduct can be expressed by the following commutative diagram
 \begin{diagram}
   A & \rTo{f}       & X            & \lTo{g}      & B \\
     & \rdTo{\alpha} & \uTo{\theta} & \ldTo{\beta} & \\
     &               & D            &              &
 \end{diagram}
-When $A$ and $B$ are sets, $D = A \coprod B$, $\alpha$ and
-$\beta$ are inclusion maps, $\theta(c)$ can be constructed
+When $A$ and $B$ are sets, $D = A \coprod B$, the disjoint union of $A$ and $B$.
+$\alpha$ and $\beta$ are inclusion maps. $\theta(c)$ can be constructed
 by $\theta(a') = f(a)$ and $\theta(b') = g(b)$.
 Coproduct also called sum in some books.
+
+Both the product and coproduct can be defined for a familly of objects $\{A_i\}_{i \in I}$.
+Where the product is denoted by $\prod_{i \in I} A_i$ and the coproduct is denoted by $\coprod_{i \in I} A_i$.
 
 
 \subsection{Pushout and Pullback}
