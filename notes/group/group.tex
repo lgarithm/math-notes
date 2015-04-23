@@ -3,6 +3,19 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{enumerate}
+\usepackage{color}
+\usepackage[
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=black
+  colorlinks=true,
+  linktoc=all,
+  linkcolor=blue,
+  linktocpage=true
+]{hyperref}
+
 \newtheorem{defi}{Definition}[section]
 \newtheorem{pro}[defi]{Proposition}
 \newtheorem{cly}[defi]{Corollary}
@@ -19,7 +32,10 @@
 \def\abs#1{\left| {#1} \right|}
 \def\gen#1{\left< {#1} \right>}
 
+\title{Note for Group Theory}
+
 \begin{document}
+\maketitle
 \tableofcontents
 \newpage
 \input group1

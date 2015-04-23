@@ -1,8 +1,5 @@
-
-main:
+pdf:
 	pdflatex group.tex
 
 clean:
-	-rm *.aux
-	-rm *.log
-	-rm *.toc
+	-rm *.aux *.log *.toc *.out
