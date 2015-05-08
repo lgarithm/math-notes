@@ -1,5 +1,18 @@
 \documentclass{article}
 \usepackage{amsmath}
+\usepackage{color}
+\usepackage[
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=black
+  colorlinks=true,
+  linktoc=all,
+  linkcolor=blue,
+  linktocpage=true
+]{hyperref}
+
 \title{Elementary Number Theory}
 
 \begin{document}
@@ -16,11 +29,11 @@
 An arithmetic function is a function defined on the positive integers.
 
 \subsection{Additive Function}
-An arithmetic function $f$ is additive if $f(mn) = f(m)f(n)$ for $(m, n) = 1$.
+An arithmetic function $f$ is additive if $f(mn) = f(m) + f(n)$ for $(m, n) = 1$.
 
 \subsubsection*{Omega Functions}
 For integer $n$, $\omega(n)$ counts the number of distinct prime factors of $n$,
-$\Omega(n)$ countts the number of prime factors of $n$ with multiplicity.
+$\Omega(n)$ counts the number of prime factors of $n$ with multiplicity.
 $\omega(n) = \Omega(n)$ when $n$ is square free.
 
 $\Omega(mn) = \Omega(m) + \Omega(n)$ for any positive integers $m$ and $n$.
@@ -86,5 +99,31 @@ For an arithmetic function $f(n)$, it's M\"obius transform is another arithmetic
 defined by $$g(n) = \sum_{d \vert n} f(d)$$
 $f(n)$ can be recovered from $g(n)$ by the M\"obius inversion formula
 $$f(n) = \sum_{d \vert n} \mu({n \over d}) g(d)$$
+
+Define the arithmetic function $I$ as $I(n) = 1$.
+Then $f$ and its M\"obius transform $g$ can be expressed as
+\begin{align*}
+  g &= f \circ I \\
+  f &= g \circ \mu
+\end{align*}
+The Dirchlet convolution of $I$ and $\mu$ is the unit arithmetic function $\delta$,
+which is defined as
+\begin{equation*}
+  \delta(n) =
+  \begin{cases}
+    1 \, (n = 1) \\
+    0 \, (n > 1)
+  \end{cases}
+\end{equation*}
+
+\subsection{$L$-Series of an Arithmetic Function}
+For an arithmetic function $f$, its formal $L$-series is defined as the formal sum
+\begin{equation*}
+  L(f, s) = \sum_{n=1}^\infty {f(n) \over n^s}
+\end{equation*}
+For another arithmetic function $g$, we have
+\begin{equation*}
+  L(f, s) L(g, s) = L(f \circ g, s)
+\end{equation*}
 
 \end{document}
