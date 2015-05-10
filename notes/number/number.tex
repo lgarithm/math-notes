@@ -37,13 +37,15 @@ $\Omega(n)$ counts the number of prime factors of $n$ with multiplicity.
 $\omega(n) = \Omega(n)$ when $n$ is square free.
 
 $\Omega(mn) = \Omega(m) + \Omega(n)$ for any positive integers $m$ and $n$.
-This kind of additive function is called complete additive function.
-
+This kind of additive function is called completely additive function.
 
 \subsection{Multiplicative Function}
-An arithmetic function $f$ is multiplicative if $f(mn) = f(m)f(n)$ for $(m, n) = 1$.
-If has decomposition $n = \prod_i^k p_i^{e_i}$
+An arithmetic function $f$ is multiplicative if $f(mn) = f(m)f(n)$ for $(m, n) = 1$,
+and is completely multiplicative if $f(mn) = f(m)f(n)$ for any $m, n$.
+If $n$ has decomposition $n = \prod_i^k p_i^{e_i}$, when $f$ is multiplicative, we have
 $$f(n) = \prod_i^k f(p_i^{e_i})$$
+and when $f$ is completely multiplicative, we have
+$$f(n) = \prod_i^k f(p_i)^{e_i}$$
 
 \subsubsection*{Divisor Function}
 The divisor function $d(n)$ counts the number of positive divisors of $n$.
