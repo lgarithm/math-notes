@@ -142,4 +142,15 @@ For another arithmetic function $g$, we have
   L(f, s) L(g, s) = L(f \circ g, s)
 \end{equation*}
 
+If $f$ is multiplicative, we have
+\begin{equation*}
+  L(f, s) = \prod_p (\sum_{k=0}^\infty {f(p^k) \over p^{ks}})
+\end{equation*}
+If $f$ is completely multiplicative,
+\begin{equation*}
+  L(f, s)
+  = \prod_p (\sum_{k=0}^\infty ({f(p) \over p^s})^k)
+  = \prod_p {1 \over 1 - {f(p) \over p^s}}
+\end{equation*}
+
 \end{document}
