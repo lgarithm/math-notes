@@ -21,7 +21,7 @@
 \tableofcontents
 \newpage
 
-\section{Divisiblity}
+\section{Divisibility}
 
 \section{Modular Arithmetic}
 
@@ -91,8 +91,17 @@ factors of $n$ when $n$ is square free.
 
 \subsection{Ring of Arithmetic Functions}
 \subsubsection*{Dirichlet Convolution}
-For two arithmetic functions $f$ and $g$, their Dirichlet convolution is another arithmetic function
-define by $$h(n) = \sum_{d \vert n} f(d) g({n \over d})$$
+For two arithmetic functions $f$ and $g$, their Dirichlet convolution
+is another arithmetic function $f \circ g$ define by
+$$(f \circ g)(n) = \sum_{d \vert n} f(d) g({n \over d})$$
+It's obvious from the definition that the Dirichlet convolution is commutative,
+i.e. $f \circ g = g \circ f$.
+
+Note that the Dirichlet convolution also can be written as
+$$(f \circ g) \sum_{n_1 n_2 = n} f(n_1) g(n_2)$$
+This notation extends to $k$ arithmetic functions,
+i.e. $$(f_1 \circ \cdots \circ f_k) = \sum_{n_1 \cdots n_k = n} f(n_1) \cdots f(n_k)$$
+This proves that the Dirichlet convolution is associative.
 
 \subsubsection*{M\"obius Transform}
 For an arithmetic function $f(n)$, it's M\"obius transform is another arithmetic function
@@ -106,8 +115,10 @@ Then $f$ and its M\"obius transform $g$ can be expressed as
   g &= f \circ I \\
   f &= g \circ \mu
 \end{align*}
-The Dirchlet convolution of $I$ and $\mu$ is the unit arithmetic function $\delta$,
-which is defined as
+By using the associativity of Dirichlet convolution, we obtain that
+$$f = g \circ \mu = (f \circ I) \circ \mu = f \circ (I \circ \mu)$$
+The Dirchlet convolution of $I$ and $\mu$ is denoted as $\delta$,
+It has the properties that
 \begin{equation*}
   \delta(n) =
   \begin{cases}
@@ -115,6 +126,11 @@ which is defined as
     0 \, (n > 1)
   \end{cases}
 \end{equation*}
+
+\subsubsection{Ring of Arithmetic Functions}
+The set of all arithmethic functions, together with $+$ and $\circ$, forms a commutative ring with identity $\delta$.
+Where $+$ is the pointwise sum of two arithmetic functions.
+The zero of this ring is the function $z$ that $z(n) = 0$ for any $n$.
 
 \subsection{$L$-Series of an Arithmetic Function}
 For an arithmetic function $f$, its formal $L$-series is defined as the formal sum
