@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{color}
 \usepackage[
   colorlinks,
@@ -46,6 +47,9 @@ If $n$ has decomposition $n = \prod_i^k p_i^{e_i}$, when $f$ is multiplicative, 
 $$f(n) = \prod_i^k f(p_i^{e_i})$$
 and when $f$ is completely multiplicative, we have
 $$f(n) = \prod_i^k f(p_i)^{e_i}$$
+
+A multiplicative function $f$ is non-trivial if exists $n$ such that $f(n) \neq 0$,
+if $f$ is non-trivial, $f(1 n) = f(1)f(n)$, therefore $f(1) = 1$.
 
 \subsubsection*{Divisor Function}
 The divisor function $d(n)$ counts the number of positive divisors of $n$.
@@ -132,7 +136,12 @@ It has the properties that
 \subsubsection*{Ring of Arithmetic Functions}
 The set of all arithmethic functions, together with $+$ and $\circ$, forms a commutative ring with identity $\delta$.
 Where $+$ is the pointwise sum of two arithmetic functions.
-The zero of this ring is the function $z$ that $z(n) = 0$ for any $n$.
+The zero of this ring is the trivial function $z$ that $z(n) = 0$ for any $n$.
+The ring of arithmetic functions isn't an integral domain.
+
+The set of all multiplicative functions form a subring which is an integral domain.
+
+The set of all completely multiplicative functions don't form a subring.
 
 \subsection{$L$-Series of an Arithmetic Function}
 For an arithmetic function $f$, its formal $L$-series is defined as the formal sum
@@ -161,5 +170,15 @@ When $f = I$, where $I$ is the function such that $I(n) = 1$,
   = \sum_{n=1}^\infty {1 \over n^s}
   = \zeta(s)
 \end{equation*}
+
+\subsection{Dirichlet Character}
+A Dirichlet character modulo $m$ is a completely multiplicative function $\chi$
+with period $m$ such that $\chi(n) = 0$ when $(n, m) \neq 1$
+and $\chi(n) \neq 0$ when $(n, m) = 1$. The function $I$ is a Dirichlet character,
+which is called the trivial character.
+
+$\chi$ is a Dirichet character modulo $m$ if and only if there is a group homomorphism
+$$\tilde\chi : (\mathbb Z / m \mathbb Z)^\ast \to S^1$$
+where $S^1$ is the group of unit roots.
 
 \end{document}
