@@ -1,2 +1,0 @@
-pdf:
-	pdflatex calc.tex
