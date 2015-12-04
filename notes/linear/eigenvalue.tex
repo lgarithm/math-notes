@@ -1,0 +1,23 @@
+\section{Eigenvalue}
+
+\subsection{Character Polynomial}
+Let $M$ be a $n \times n$ matrix. Define the character polynomial of $M$ as
+$$f_M(\lambda) = \det(M - \lambda I)$$
+
+\begin{pro}
+    $f_{ABA^{-1}}(\lambda) = f_A(\lambda)$
+\end{pro}
+
+\begin{proof}
+    $\det(ABA^{-1} - \lambda I) = \det(ABA^{-1} - A(\lambda I)A^{-1}) = \det(A(B - \lambda I)A^{-1})$
+\end{proof}
+
+A root of $f_M(\lambda) = 0$ is called an eigenvalue of $M$.
+
+\subsection{Eigenvector}
+\begin{defi}
+Let $M \in M_n(R)$ and $v$ a vector of length $n$, $v$ is an eigenvector of $M$ if $Mv = \lambda v$ for some $\lambda \in R$.
+\end{defi}
+
+\subsection{Diagonal Matrix}
+$M = \diag(a_1, \dots, a_n)$

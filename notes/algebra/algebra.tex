@@ -68,6 +68,13 @@ then we have the following relations
 each $b_i$ can be uniquely determined starts from $b_1$. In fact,
 $$b_n = \sum_{i_1 + \cdots + i_k = n} (-1)^k a_{i_1} \cdots a_{i_k}$$
 
+When $g$ is a formal power series without constant, the composition $f \circ g$ is well defined. Let $f = \sum_{n=0}^\infty a_n X^n$, $g = \sum_{n=1}^\infty b_n X^n$, then $f \circ g = \sum_{n=0}^\infty c_n X^n$ where $c_0 = a_0$ and
+$$c_n = \sum_{k=1}^n a_k
+(\sum_{i_1 + \cdots + i_k = n} b_{i_1} \cdots b_{i_k})$$
+
+The inverse of $1 - g$ can be considered as the composition of $1 \over 1 - x$ and $g$, i.e. $$(1 - g)^{-1} = {1 \over 1 - X} \circ g$$
+
+
 \subsection{Semigroup Algebra}
 Let $M$ be a semi-group, $R$ a ring, and $f : M \to R$ a map from $M$ to $R$.
 We call the value of $f$ at $m$ the coefficient of term $x^m$ and write it as $f_m$ instead of $f(m)$.
