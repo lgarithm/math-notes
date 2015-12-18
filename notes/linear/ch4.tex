@@ -1,4 +1,3 @@
-
 \section{Multilinear Algebra}
 \subsection{Linear Space}
 A linear space $V$ over $K$, is an abelian group, together with a field $K$,
@@ -42,10 +41,17 @@ $$(S \otimes T)(v_1, \dots v_k, v_{k+1}, \dots, v_{k + l})
 call it the tensor product of $S$ and $T$.
 We have $$(S_1 + S_2) \otimes T = S_1 \otimes T + S_2 \otimes T.$$
 
-\subsection{Alternating Form}
-Let $P = (\ve v_1, \dots, \ve v_k) \in V^k$, $\sigma \in S_k$,
+\subsection{Symmetric Form}
+For $P = (\ve v_1, \dots, \ve v_k) \in V^k$, $\sigma \in S_k$,
 define $\sigma(P) = (\ve v_{\sigma(1)}, \dots, \ve v_{\sigma(k)})$.
-Let $T \in \mathcal{T}^k(V)$, $T$ is skew symmetric if
+This defined an action of $S_k$ on $V^k$.
+A $k$-tensor $T \in \mathcal T^k(V)$ is symmtric if
+$$T = T \circ \sigma$$
+for any $\sigma \in S_k$ and $P \in V^k$.
+Denote the subspace of symmetric tensors by $$\sym^k(V)$$
+
+\subsection{Alternating Form}
+A $k$-tensor $T \in \mathcal{T}^k(V)$ is skew symmetric if
 $$T = (-1)^\sigma T \circ \sigma$$
 for any $\sigma \in S_k$ and $P \in V^k$.
 Let $\Lambda^k(V)$ be the set of all skew symmetric $k$-tensor,
@@ -105,7 +111,6 @@ $$\phi^\ast(T)(w_1, \dots, w_k) = T(\phi(w_1), \dots, \phi(w_k))$$
 
 \subsection{Multilinear Form}
 A multi-linear form can be consider as homogeneous polynomials.
-Say we have a $n$ dimensional linear space $V$ over $K$, then each element $f$ in the dual space $V^\ast$ 
+Say we have a $n$ dimensional linear space $V$ over $K$, then each element $f$ in the dual space $V^\ast$
 is a linear function of $n$ variables in the coordinates.
 A $k$ linear form is a homogenous polnomial of degree $k$.
-
