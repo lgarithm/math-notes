@@ -1,3 +1,0 @@
-
-main:
-	pdflatex formal.tex
