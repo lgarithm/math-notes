@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\def\mat#1{\left(\begin{matrix}#1\end{matrix}\right)}
+
+\title{Bézier Variety (draft)[WIP]}
+
+
+\begin{document}
+\maketitle
+
+
+\section{The Bézier Curve}
+
+\subsection{The Bézier Curve of 2 control points}
+Let $P_0, P_1 \in \mathbb R^2$. The Bézier curve with control points $P_0, P_1$ is just the segment $\overline {P_0 \, P_1}$,
+given by the equation $P(t) = (1 - t) P_0 + t P_1$.
+
+We define $t[P : Q] = (1 - t) P + t Q$, so that $P(t)$ be be written as $P(t) = t[P_0 : P_1]$.
+
+\subsection{The Bézier Curve of 3 control points}
+Let $P_0, P_1, P_2 \in \mathbb R^3$. The Bézier curve with control points $P_0, P_1, P_2$ is a curve that begins at $P_0$ and ends at $P_2$,
+such that $P(t)$ is tangent with $\overline {t[P_0 : P_1] \, t[P_1 : P_2]}$ at $t[t[P_0 : P_1] : t[P_1 : P_2]]$.
+
+The equation of $P(t)$ is given by $P(t) = (1-t)^2 P_0 + 2 (1-t) t P_1 + t^2 P_2$.
+
+\subsection{The Bézier Curve of (n + 1) Control Points}
+\begin{align*}
+    P(t) &= \sum_{k=0}^n {n \choose k} (1-t)^{n-k} t^k P_k \\
+        &= \sum_{k=0}^n B^n_k (t) P_k
+\end{align*}
+
+where $B^n_k (x) = {n \choose k} (1 - x)^{n-k} x^k$.
+
+\section{The Bézier Surface}
+
+\subsection{The Bézier Surface of 4 Control Points}
+Let $P, Q, R, S \in \mathbb R^3$. The Bézier surface with control points $P, Q, R, S$ is
+\begin{align*}
+    F(s, t)
+        &= t[s[P : Q] : s[R : S]] \\
+        &= \mat{1 - t & t} \mat{P & Q \\ R & S} \mat{1 - s \\ s}
+\end{align*}
+
+\subsection{The Bézier Surface of 9 Control Points}
+\begin{align*}
+    F(s, t) &=
+        \mat{(1 - s)^2 & 2(1 - s) s & s^2}
+        \mat{P_{00} & P_{01} & P_{02} \\
+            P_{10} & P_{11} & P_{12} \\
+            P_{20} & P_{21} & P_{22}}
+        \mat{(1 - t)^2 \\ 2(1 - t)t \\ t^2}
+\end{align*}
+
+
+\subsection{The Bézier Surface of $(n + 1)^2$ Control Points}
+\begin{align*}
+    F(s, t) &= \sum_{i=0}^n \sum_{j=0}^n B^n_i (s) B^n_j (t) P_{ij} \\
+        &= B^n(t) P (B^n(s))^T
+\end{align*}
+
+where $B^n(t) = (B^n_0(t), \dots, B^n_n(t))$.
+
+\section{The Bézier Hypersurface}
+Let $P_{i_1, \dots, i_m} \in K^{m + 1} \, (0 \leq i_j \leq n)$, be $(n + 1)^m$ control points,
+the Bézier hypersurface is given by
+\begin{align*}
+    F(t_1, \dots, t_m) = \sum^n_{i_1 = 0} \cdots \sum^n_{i_m = 0} B^n_{i_1} (t_1) \cdots B^n_{i_m} (t_m) P_{i_1, \dots, i_m}
+\end{align*}
+
+\end{document}
